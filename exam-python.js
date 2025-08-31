@@ -1,68 +1,68 @@
 // Python/Django Exam Questions
 const pythonQuestions = [
-    // Basic Questions (3)
+    // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is the correct way to create a function in Python?",
-        options: ["function myFunc():", "def myFunc():", "create myFunc():", "func myFunc():"],
+        question: "What is the output of this code?\n```python\nx = [1, 2, 3]\ny = x\nx.append(4)\nprint(y)\n```",
+        options: ["[1, 2, 3]", "[1, 2, 3, 4]", "[4, 1, 2, 3]", "Error"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "Which of the following is used to create a list in Python?",
-        options: ["()", "[]", "{}", "<>"],
+        question: "Consider this code:\n```python\ndef func(a, b=[]):\n    b.append(a)\n    return b\n\nprint(func(1))\nprint(func(2))\n```\nWhat is the output?",
+        options: ["[1]\\n[2]", "[1]\\n[1, 2]", "[1]\\n[2, 1]", "Error"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "What is the output of print(type([]))?",
-        options: ["<class 'list'>", "<class 'array'>", "<class 'tuple'>", "<class 'set'>"],
-        correct: 0,
+        question: "What happens when you run this code?\n```python\ntry:\n    x = 10 / 0\n    print(x)\nexcept ZeroDivisionError:\n    print('Division by zero')\nexcept Exception as e:\n    print(f'Error: {e}')\n```",
+        options: ["10", "Division by zero", "Error: division by zero", "Infinity"],
+        correct: 1,
         level: "basic"
     },
     
-    // Middle Questions (3)
+    // Middle Questions (3) - Enhanced complexity
     {
-        question: "What is a Django model?",
-        options: ["A database table", "A Python class that represents a database table", "A URL pattern", "A template file"],
+        question: "Consider this Django model:\n```python\nclass Order(models.Model):\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    items = models.ManyToManyField(Product, through='OrderItem')\n    total = models.DecimalField(max_digits=10, decimal_places=2)\n    \n    def save(self, *args, **kwargs):\n        if not self.pk:\n            self.total = sum(item.price for item in self.items.all())\n        super().save(*args, **kwargs)\n```\nWhat issue exists with this save method?",
+        options: ["The total calculation will always be 0", "The total calculation happens before items are saved", "The method will cause infinite recursion", "The total field should be auto-calculated"],
         correct: 1,
         level: "middle"
     },
     {
-        question: "What is the purpose of Django migrations?",
-        options: ["To move data between databases", "To track database schema changes", "To backup data", "To optimize queries"],
-        correct: 1,
+        question: "Given this Python code:\n```python\ndef process_data(data_list):\n    result = []\n    for item in data_list:\n        if item > 0:\n            result.append(item * 2)\n    return result\n\n# Using list comprehension\nresult = [item * 2 for item in data_list if item > 0]\n```\nWhat is the time complexity difference between these approaches?",
+        options: ["List comprehension is O(n²), loop is O(n)", "Both are O(n), but list comprehension is faster", "Loop is O(n²), list comprehension is O(n)", "Both are O(n) with similar performance"],
+        correct: 3,
         level: "middle"
     },
     {
-        question: "What is the difference between a tuple and a list in Python?",
-        options: ["No difference", "Tuples are immutable, lists are mutable", "Lists are immutable, tuples are mutable", "Tuples are faster than lists"],
+        question: "In this Django view:\n```python\n@login_required\ndef user_profile(request, user_id):\n    user = get_object_or_404(User, id=user_id)\n    if request.user != user:\n        return HttpResponseForbidden()\n    return render(request, 'profile.html', {'user': user})\n```\nWhat security concern exists?",
+        options: ["No security concern", "Users can access other users' profiles", "The view doesn't check permissions", "The user_id parameter is not validated"],
         correct: 1,
         level: "middle"
     },
     
-    // Advanced Questions (4)
+    // Advanced Questions (4) - Enhanced complexity
     {
-        question: "What is a Django signal?",
-        options: ["A database trigger", "A way to execute code when certain actions occur", "A URL redirect", "A template tag"],
-        correct: 1,
+        question: "Consider this Django ORM query:\n```python\norders = Order.objects.select_related('customer')\\\n    .prefetch_related('items')\\\n    .filter(status='pending')\\\n    .annotate(\n        total_items=Count('items'),\n        avg_price=Avg('items__price')\n    )\n```\nHow many database queries will this generate?",
+        options: ["1 query", "2 queries", "3 queries", "4+ queries"],
+        correct: 2,
         level: "advanced"
     },
     {
-        question: "What is the purpose of Django's select_related()?",
-        options: ["To select specific fields", "To optimize foreign key queries", "To filter results", "To order results"],
-        correct: 1,
+        question: "Given this Python metaclass:\n```python\nclass Singleton(type):\n    _instances = {}\n    \n    def __call__(cls, *args, **kwargs):\n        if cls not in cls._instances:\n            cls._instances[cls] = super().__call__(*args, **kwargs)\n        return cls._instances[cls]\n\nclass Database(metaclass=Singleton):\n    pass\n```\nWhat potential issue exists with this implementation?",
+        options: ["Memory leaks if instances are large", "Not thread-safe", "Cannot be inherited", "All of the above"],
+        correct: 3,
         level: "advanced"
     },
     {
-        question: "What is a Python decorator?",
-        options: ["A function that modifies another function", "A class attribute", "A module import", "A variable type"],
+        question: "In this Django middleware:\n```python\nclass RateLimitMiddleware:\n    def __init__(self, get_response):\n        self.get_response = get_response\n        self.rate_limits = {}\n    \n    def __call__(self, request):\n        ip = request.META.get('REMOTE_ADDR')\n        if self.is_rate_limited(ip):\n            return HttpResponseTooManyRequests()\n        return self.get_response(request)\n```\nWhat is the main issue with this implementation?",
+        options: ["No cleanup of old rate limit data", "IP addresses can be spoofed", "The rate limit logic is missing", "It doesn't handle proxy headers"],
         correct: 0,
         level: "advanced"
     },
     {
-        question: "What is the purpose of Django's middleware?",
-        options: ["To handle database connections", "To process requests and responses", "To manage templates", "To handle forms"],
-        correct: 1,
+        question: "Consider this async Python code:\n```python\nasync def fetch_data(urls):\n    tasks = [fetch_url(url) for url in urls]\n    results = await asyncio.gather(*tasks, return_exceptions=True)\n    return [r for r in results if not isinstance(r, Exception)]\n```\nWhat happens if one of the fetch_url calls raises an exception?",
+        options: ["The entire function fails", "The exception is logged and ignored", "The exception is returned in results", "The function waits for all tasks to complete"],
+        correct: 2,
         level: "advanced"
     }
 ];

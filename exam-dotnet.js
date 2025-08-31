@@ -1,68 +1,68 @@
 // .NET Exam Questions
 const dotnetQuestions = [
-    // Basic Questions (3)
+    // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is the base class for all .NET types?",
-        options: ["System.Object", "System.Base", "System.Type", "System.Root"],
+        question: "What is the output of this code?\n```csharp\nstring str = \"Hello\";\nstr += \" World\";\nConsole.WriteLine(str);\nConsole.WriteLine(str.GetHashCode());\n```",
+        options: ["Hello World\\nSame hash code", "Hello World\\nDifferent hash code", "Hello\\nSame hash code", "Error"],
+        correct: 1,
+        level: "basic"
+    },
+    {
+        question: "Consider this code:\n```csharp\nint[] numbers = { 1, 2, 3, 4, 5 };\nvar result = numbers.Where(n => n > 2).ToList();\nnumbers[0] = 10;\nConsole.WriteLine(result[0]);\n```\nWhat is the output?",
+        options: ["1", "3", "10", "Error"],
+        correct: 1,
+        level: "basic"
+    },
+    {
+        question: "What happens when you run this code?\n```csharp\ntry {\n    object obj = null;\n    string str = obj.ToString();\n} catch (Exception ex) {\n    Console.WriteLine(ex.GetType().Name);\n}\n```",
+        options: ["NullReferenceException", "InvalidOperationException", "ArgumentException", "No exception"],
         correct: 0,
         level: "basic"
     },
-    {
-        question: "Which keyword is used to declare a constant in C#?",
-        options: ["const", "final", "static", "readonly"],
-        correct: 0,
-        level: "basic"
-    },
-    {
-        question: "What is the purpose of the 'using' statement in C#?",
-        options: ["Import namespaces", "Dispose resources automatically", "Include files", "Define classes"],
-        correct: 1,
-        level: "basic"
-    },
     
-    // Middle Questions (3)
+    // Middle Questions (3) - Enhanced complexity
     {
-        question: "What is the difference between '==' and 'Equals()' in C#?",
-        options: ["No difference", "== compares references, Equals() compares values", "== compares values, Equals() compares references", "== is faster than Equals()"],
-        correct: 1,
-        level: "middle"
-    },
-    {
-        question: "What is the purpose of the 'virtual' keyword in C#?",
-        options: ["Make a method private", "Allow method overriding", "Make a method static", "Prevent inheritance"],
-        correct: 1,
-        level: "middle"
-    },
-    {
-        question: "What is the difference between 'ref' and 'out' parameters?",
-        options: ["No difference", "ref requires initialization, out doesn't", "out requires initialization, ref doesn't", "ref is for input, out is for output"],
-        correct: 1,
-        level: "middle"
-    },
-    
-    // Advanced Questions (4)
-    {
-        question: "What is the purpose of the 'async' and 'await' keywords?",
-        options: ["Synchronous programming", "Asynchronous programming", "Parallel programming", "Functional programming"],
-        correct: 1,
-        level: "advanced"
-    },
-    {
-        question: "What is the difference between 'StringBuilder' and 'String'?",
-        options: ["No difference", "StringBuilder is immutable, String is mutable", "StringBuilder is mutable, String is immutable", "StringBuilder is faster for concatenation"],
+        question: "Consider this ASP.NET Core middleware pipeline:\n```csharp\napp.UseExceptionHandler(\"/Error\");\napp.UseHttpsRedirection();\napp.UseStaticFiles();\napp.UseRouting();\napp.UseAuthentication();\napp.UseAuthorization();\napp.UseEndpoints(endpoints => {\n    endpoints.MapControllers();\n});\n```\nWhat happens if an exception occurs in UseStaticFiles()?",
+        options: ["The exception is logged and ignored", "The request continues to the next middleware", "The exception handler middleware catches it", "The application crashes"],
         correct: 2,
+        level: "middle"
+    },
+    {
+        question: "In this Entity Framework query:\n```csharp\nvar users = context.Users\n    .Include(u => u.Orders)\n    .ThenInclude(o => o.OrderItems)\n    .Where(u => u.IsActive)\n    .ToList();\n```\nWhat is the potential performance issue?",
+        options: ["The query will be slow", "N+1 query problem", "Too many includes", "All of the above"],
+        correct: 3,
+        level: "middle"
+    },
+    {
+        question: "Given this dependency injection setup:\n```csharp\nservices.AddScoped<IDataService, DataService>();\nservices.AddSingleton<ICacheService, CacheService>();\nservices.AddTransient<IEmailService, EmailService>();\n```\nWhat is the lifetime of IEmailService?",
+        options: ["One instance per request", "One instance per application", "New instance every time", "One instance per session"],
+        correct: 2,
+        level: "middle"
+    },
+    
+    // Advanced Questions (4) - Enhanced complexity
+    {
+        question: "Consider this async method:\n```csharp\npublic async Task<IActionResult> ProcessDataAsync()\n{\n    using var scope = serviceProvider.CreateScope();\n    var service = scope.ServiceProvider.GetRequiredService<IDataService>();\n    var result = await service.ProcessAsync();\n    return Ok(result);\n}\n```\nWhat issue exists with this implementation?",
+        options: ["Service scope is not disposed properly", "The service is resolved incorrectly", "The method should be synchronous", "No issue exists"],
+        correct: 0,
         level: "advanced"
     },
     {
-        question: "What is the purpose of the 'yield' keyword in C#?",
-        options: ["Return values", "Implement iterators", "Handle exceptions", "Define properties"],
+        question: "In this configuration pattern:\n```csharp\npublic class AppSettings\n{\n    public string ConnectionString { get; set; } = string.Empty;\n    public int Timeout { get; set; } = 30;\n}\n\nservices.Configure<AppSettings>(configuration.GetSection(\"App\"));\n```\nWhat is the purpose of the default values?",
+        options: ["To provide fallback values", "To make properties required", "To improve performance", "To enable validation"],
+        correct: 0,
+        level: "advanced"
+    },
+    {
+        question: "Given this logging configuration:\n```csharp\nLog.Logger = new LoggerConfiguration()\n    .WriteTo.Console()\n    .WriteTo.File(\"logs/app.txt\", rollingInterval: RollingInterval.Day)\n    .CreateLogger();\n```\nWhat happens when the application runs for multiple days?",
+        options: ["Logs are overwritten", "New log files are created daily", "Logs are compressed", "Logs are deleted after 24 hours"],
         correct: 1,
         level: "advanced"
     },
     {
-        question: "What is the difference between 'Task' and 'Thread'?",
-        options: ["No difference", "Task is higher-level abstraction", "Thread is higher-level abstraction", "Task is for UI, Thread is for background"],
-        correct: 1,
+        question: "Consider this health check:\n```csharp\nservices.AddHealthChecks()\n    .AddCheck<DatabaseHealthCheck>(\"database\")\n    .AddCheck<ExternalApiHealthCheck>(\"api\");\n```\nWhat is the purpose of the string parameters?",
+        options: ["To identify the health check", "To set the check interval", "To configure the timeout", "To enable caching"],
+        correct: 0,
         level: "advanced"
     }
 ];

@@ -1,68 +1,68 @@
 // React Native Exam Questions
 const reactNativeQuestions = [
-    // Basic Questions (3)
+    // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is React Native?",
-        options: ["A web framework", "A mobile app development framework", "A database", "A programming language"],
+        question: "What is the output of this React Native code?\n```javascript\nconst [count, setCount] = useState(0);\n\nuseEffect(() => {\n  setCount(count + 1);\n  setCount(count + 1);\n}, []);\n\nconsole.log(count);\n```",
+        options: ["0", "1", "2", "Error"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "What is the purpose of the 'View' component in React Native?",
-        options: ["To display text", "To create a container", "To handle touch events", "To make network requests"],
-        correct: 1,
+        question: "Consider this component:\n```javascript\nconst MyComponent = ({ data }) => {\n  const [items, setItems] = useState(data);\n  \n  useEffect(() => {\n    setItems(data);\n  }, [data]);\n  \n  return <Text>{items.length}</Text>;\n};\n```\nWhat happens when the data prop changes?",
+        options: ["Component re-renders with new data", "Component doesn't update", "Component crashes", "Component shows old data"],
+        correct: 0,
         level: "basic"
     },
     {
-        question: "What is the purpose of the 'Text' component in React Native?",
-        options: ["To create a container", "To display text", "To handle touch events", "To make network requests"],
-        correct: 1,
+        question: "What happens when you run this code?\n```javascript\ntry {\n  const result = JSON.parse('invalid json');\n  console.log(result);\n} catch (error) {\n  console.log(error.name);\n}\n```",
+        options: ["SyntaxError", "TypeError", "ReferenceError", "No error"],
+        correct: 0,
         level: "basic"
     },
     
-    // Middle Questions (3)
+    // Middle Questions (3) - Enhanced complexity
     {
-        question: "What is the purpose of the 'useState' hook in React Native?",
-        options: ["To manage component state", "To handle side effects", "To make API calls", "To handle navigation"],
+        question: "Consider this React Native navigation setup:\n```javascript\nconst Stack = createStackNavigator();\n\nfunction AppNavigator() {\n  return (\n    <Stack.Navigator>\n      <Stack.Screen name=\"Home\" component={HomeScreen} />\n      <Stack.Screen \n        name=\"Profile\" \n        component={ProfileScreen}\n        options={{\n          headerShown: false,\n          gestureEnabled: true\n        }}\n      />\n    </Stack.Navigator>\n  );\n}\n```\nWhat happens when navigating to the Profile screen?",
+        options: ["The header is hidden and gestures are enabled", "The header is shown and gestures are disabled", "The screen transitions with animation", "The screen loads without navigation"],
         correct: 0,
         level: "middle"
     },
     {
-        question: "What is the purpose of the 'useEffect' hook in React Native?",
-        options: ["To manage component state", "To handle side effects", "To make API calls", "To handle navigation"],
-        correct: 1,
+        question: "In this React Native component:\n```javascript\nconst ImageGallery = ({ images }) => {\n  const [selectedIndex, setSelectedIndex] = useState(0);\n  \n  const renderItem = useCallback(({ item, index }) => (\n    <Image\n      source={{ uri: item.url }}\n      style={styles.image}\n      onLoad={() => console.log(`Image ${index} loaded`)}\n    />\n  ), []);\n  \n  return (\n    <FlatList\n      data={images}\n      renderItem={renderItem}\n      keyExtractor={item => item.id}\n      horizontal\n      pagingEnabled\n    />\n  );\n};\n```\nWhat is the purpose of useCallback here?",
+        options: ["To optimize re-renders", "To prevent memory leaks", "To enable lazy loading", "To improve image quality"],
+        correct: 0,
         level: "middle"
     },
     {
-        question: "What is the purpose of the 'TouchableOpacity' component in React Native?",
-        options: ["To display text", "To create a container", "To handle touch events", "To make network requests"],
-        correct: 2,
+        question: "Given this React Native performance optimization:\n```javascript\nconst ExpensiveList = React.memo(({ data, onItemPress }) => {\n  const getItemLayout = useCallback((data, index) => ({\n    length: ITEM_HEIGHT,\n    offset: ITEM_HEIGHT * index,\n    index,\n  }), []);\n  \n  return (\n    <FlatList\n      data={data}\n      getItemLayout={getItemLayout}\n      removeClippedSubviews={true}\n      maxToRenderPerBatch={10}\n      windowSize={5}\n    />\n  );\n});\n```\nWhat do these FlatList props accomplish?",
+        options: ["Improve scrolling performance", "Reduce memory usage", "Enable virtualization", "All of the above"],
+        correct: 3,
         level: "middle"
     },
     
-    // Advanced Questions (4)
+    // Advanced Questions (4) - Enhanced complexity
     {
-        question: "What is the purpose of the 'useNavigation' hook in React Native?",
-        options: ["To manage component state", "To handle side effects", "To handle navigation", "To make API calls"],
-        correct: 2,
+        question: "Consider this React Native bridge implementation:\n```javascript\nconst NativeModule = NativeModules.MyNativeModule;\n\nconst MyModule = {\n  async performHeavyTask(data) {\n    try {\n      const result = await NativeModule.heavyTask(data);\n      return result;\n    } catch (error) {\n      console.error('Native module error:', error);\n      throw error;\n    }\n  }\n};\n```\nWhat happens if the native module throws an exception?",
+        options: ["The app crashes", "The exception is caught and logged", "The method returns null", "The app shows an error screen"],
+        correct: 1,
         level: "advanced"
     },
     {
-        question: "What is the purpose of the 'AsyncStorage' in React Native?",
-        options: ["To store data locally", "To make network requests", "To handle navigation", "To manage state"],
-        correct: 0,
+        question: "In this React Native animation:\n```javascript\nconst AnimatedComponent = () => {\n  const animatedValue = useRef(new Animated.Value(0)).current;\n  \n  useEffect(() => {\n    const animation = Animated.loop(\n      Animated.sequence([\n        Animated.timing(animatedValue, {\n          toValue: 1,\n          duration: 1000,\n          useNativeDriver: true\n        }),\n        Animated.timing(animatedValue, {\n          toValue: 0,\n          duration: 1000,\n          useNativeDriver: true\n        })\n      ])\n    );\n    \n    animation.start();\n    return () => animation.stop();\n  }, []);\n  \n  return (\n    <Animated.View\n      style={[\n        styles.box,\n        {\n          opacity: animatedValue,\n          transform: [{\n            scale: animatedValue.interpolate({\n              inputRange: [0, 1],\n              outputRange: [0.5, 1]\n            })\n          }]\n        }\n      ]}\n    />\n  );\n};\n```\nWhat is the purpose of useNativeDriver: true?",
+        options: ["To enable hardware acceleration", "To reduce JavaScript thread load", "To improve animation performance", "All of the above"],
+        correct: 3,
         level: "advanced"
     },
     {
-        question: "What is the purpose of the 'FlatList' component in React Native?",
-        options: ["To display text", "To create a container", "To display lists efficiently", "To handle touch events"],
-        correct: 2,
+        question: "Given this React Native deep linking setup:\n```javascript\nconst linking = {\n  prefixes: ['myapp://', 'https://myapp.com'],\n  config: {\n    screens: {\n      Home: 'home',\n      Profile: {\n        path: 'profile/:id',\n        parse: {\n          id: (id) => parseInt(id, 10)\n        }\n      },\n      Settings: 'settings'\n    }\n  },\n  async getInitialURL() {\n    return null;\n  }\n};\n```\nWhat happens when a user opens 'myapp://profile/123'?",
+        options: ["The app opens to the Home screen", "The app navigates to Profile with id 123", "The app shows an error", "The app opens to Settings"],
+        correct: 1,
         level: "advanced"
     },
     {
-        question: "What is the purpose of the 'useCallback' hook in React Native?",
-        options: ["To manage component state", "To handle side effects", "To optimize performance", "To handle navigation"],
-        correct: 2,
+        question: "Consider this React Native error boundary:\n```javascript\nclass ErrorBoundary extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { hasError: false, error: null };\n  }\n  \n  static getDerivedStateFromError(error) {\n    return { hasError: true, error };\n  }\n  \n  componentDidCatch(error, errorInfo) {\n    logErrorToService(error, errorInfo);\n  }\n  \n  render() {\n    if (this.state.hasError) {\n      return <ErrorFallback error={this.state.error} />;\n    }\n    return this.props.children;\n  }\n}\n```\nWhat is the purpose of getDerivedStateFromError?",
+        options: ["To log errors", "To update component state", "To prevent crashes", "To show error UI"],
+        correct: 1,
         level: "advanced"
     }
 ];

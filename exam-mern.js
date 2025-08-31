@@ -1,67 +1,67 @@
 // MERN Stack Exam Questions
 const mernQuestions = [
-    // Basic Questions (3)
+    // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What does MERN stand for?",
-        options: ["MongoDB, Express, React, Node.js", "MySQL, Express, React, Node.js", "MongoDB, Express, Redux, Node.js", "MongoDB, Express, React, Next.js"],
+        question: "What is the output of this code?\n```javascript\nconst arr = [1, 2, 3];\nconst newArr = arr.map(x => x * 2);\narr.push(4);\nconsole.log(newArr);\n```",
+        options: ["[1, 2, 3, 4]", "[2, 4, 6]", "[2, 4, 6, 8]", "[1, 2, 3]"],
+        correct: 1,
+        level: "basic"
+    },
+    {
+        question: "Consider this code:\n```javascript\nlet x = 5;\nconst y = x++;\nconsole.log(`x: ${x}, y: ${y}`);\n```\nWhat is the output?",
+        options: ["x: 5, y: 5", "x: 6, y: 5", "x: 5, y: 6", "x: 6, y: 6"],
+        correct: 1,
+        level: "basic"
+    },
+    {
+        question: "What happens when you run this code?\n```javascript\ntry {\n    const obj = null;\n    console.log(obj.property);\n} catch (error) {\n    console.log(error.name);\n}\n```",
+        options: ["TypeError", "ReferenceError", "Error", "No error"],
         correct: 0,
         level: "basic"
     },
-    {
-        question: "What is the purpose of Express.js in the MERN stack?",
-        options: ["Frontend framework", "Backend web framework", "Database", "Build tool"],
-        correct: 1,
-        level: "basic"
-    },
-    {
-        question: "What is MongoDB?",
-        options: ["Relational database", "NoSQL database", "Frontend framework", "Backend framework"],
-        correct: 1,
-        level: "basic"
-    },
     
-    // Middle Questions (3)
+    // Middle Questions (3) - Enhanced complexity
     {
-        question: "What is the purpose of React hooks?",
-        options: ["To connect to database", "To manage component state and side effects", "To handle routing", "To make HTTP requests"],
+        question: "Consider this MongoDB aggregation pipeline:\n```javascript\nconst result = await Order.aggregate([\n  { $match: { status: 'completed' } },\n  { $group: { \n    _id: '$customerId', \n    totalSpent: { $sum: '$amount' },\n    orderCount: { $sum: 1 }\n  }},\n  { $sort: { totalSpent: -1 } },\n  { $limit: 10 }\n]);\n```\nWhat does this pipeline accomplish?",
+        options: ["Finds all completed orders", "Groups orders by customer and calculates totals", "Sorts orders by amount", "Counts total orders"],
         correct: 1,
         level: "middle"
     },
     {
-        question: "What is the purpose of middleware in Express.js?",
-        options: ["To render HTML", "To process requests before they reach route handlers", "To connect to database", "To handle errors"],
+        question: "In this Express.js middleware:\n```javascript\napp.use('/api', (req, res, next) => {\n  req.startTime = Date.now();\n  res.on('finish', () => {\n    const duration = Date.now() - req.startTime;\n    console.log(`${req.method} ${req.path} - ${duration}ms`);\n  });\n  next();\n});\n```\nWhat does this middleware do?",
+        options: ["Logs all API requests", "Measures response time for API endpoints", "Blocks slow requests", "Caches API responses"],
         correct: 1,
         level: "middle"
     },
     {
-        question: "What is the purpose of Mongoose in MERN stack?",
-        options: ["Frontend framework", "Backend framework", "MongoDB object modeling tool", "Build tool"],
+        question: "Given this React component:\n```javascript\nconst UserList = ({ users }) => {\n  const [filteredUsers, setFilteredUsers] = useState(users);\n  \n  useEffect(() => {\n    setFilteredUsers(users);\n  }, [users]);\n  \n  return (\n    <div>\n      {filteredUsers.map(user => (\n        <UserCard key={user.id} user={user} />\n      ))}\n    </div>\n  );\n};\n```\nWhat issue exists with this component?",
+        options: ["No issue exists", "Missing dependency in useEffect", "Unnecessary state variable", "Inefficient re-rendering"],
         correct: 2,
         level: "middle"
     },
     
-    // Advanced Questions (4)
+    // Advanced Questions (4) - Enhanced complexity
     {
-        question: "What is the purpose of Redux in React applications?",
-        options: ["To manage component state", "To manage global application state", "To handle routing", "To make API calls"],
+        question: "Consider this Node.js cluster setup:\n```javascript\nconst cluster = require('cluster');\nconst numCPUs = require('os').cpus().length;\n\nif (cluster.isMaster) {\n  for (let i = 0; i < numCPUs; i++) {\n    cluster.fork();\n  }\n  \n  cluster.on('exit', (worker, code, signal) => {\n    console.log(`Worker ${worker.process.pid} died`);\n    cluster.fork();\n  });\n} else {\n  require('./server.js');\n}\n```\nWhat happens when a worker process crashes?",
+        options: ["The application stops", "A new worker is automatically created", "The master process crashes", "The remaining workers handle the load"],
         correct: 1,
         level: "advanced"
     },
     {
-        question: "What is the purpose of JWT in MERN applications?",
-        options: ["To store data", "To handle authentication and authorization", "To connect to database", "To render components"],
+        question: "In this MongoDB transaction:\n```javascript\nconst session = await mongoose.startSession();\nsession.startTransaction();\ntry {\n  await Account.updateOne(\n    { _id: fromAccountId },\n    { $inc: { balance: -amount } },\n    { session }\n  );\n  await Account.updateOne(\n    { _id: toAccountId },\n    { $inc: { balance: amount } },\n    { session }\n  );\n  await session.commitTransaction();\n} catch (error) {\n  await session.abortTransaction();\n  throw error;\n} finally {\n  session.endSession();\n}\n```\nWhat is the purpose of the session parameter?",
+        options: ["To track user sessions", "To ensure atomic operations", "To improve performance", "To enable caching"],
         correct: 1,
         level: "advanced"
     },
     {
-        question: "What is the purpose of WebSocket in MERN applications?",
-        options: ["To make HTTP requests", "To enable real-time communication", "To store data", "To handle routing"],
-        correct: 1,
+        question: "Given this React performance optimization:\n```javascript\nconst ExpensiveComponent = React.memo(({ data, onUpdate }) => {\n  const processedData = useMemo(() => {\n    return data.map(item => ({\n      ...item,\n      processed: heavyComputation(item)\n    }));\n  }, [data]);\n  \n  return (\n    <div>\n      {processedData.map(item => (\n        <DataItem key={item.id} item={item} onUpdate={onUpdate} />\n      ))}\n    </div>\n  );\n});\n```\nWhat is the purpose of React.memo here?",
+        options: ["To prevent unnecessary re-renders", "To optimize memory usage", "To enable lazy loading", "To improve bundle size"],
+        correct: 0,
         level: "advanced"
     },
     {
-        question: "What is the purpose of environment variables in MERN applications?",
-        options: ["To store sensitive configuration data", "To store user data", "To store component state", "To handle routing"],
+        question: "Consider this Express.js error handling:\n```javascript\napp.use((err, req, res, next) => {\n  if (err.name === 'ValidationError') {\n    return res.status(400).json({\n      error: 'Validation failed',\n      details: err.details\n    });\n  }\n  \n  if (err.name === 'CastError') {\n    return res.status(400).json({\n      error: 'Invalid ID format'\n    });\n  }\n  \n  console.error(err);\n  res.status(500).json({ error: 'Internal server error' });\n});\n```\nWhat is the purpose of the next parameter?",
+        options: ["To pass control to the next middleware", "To handle async errors", "To enable error chaining", "To log error details"],
         correct: 0,
         level: "advanced"
     }
