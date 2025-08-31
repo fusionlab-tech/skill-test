@@ -189,29 +189,13 @@ function calculateScore() {
 function sendResults(score, percentage) {
     const candidateInfo = JSON.parse(localStorage.getItem('candidateInfo'));
     
-    const emailBody = `
-Candidate Information:
-Name: ${candidateInfo.name}
-Email: ${candidateInfo.email}
-Address: ${candidateInfo.street}, ${candidateInfo.state}, ${candidateInfo.country}
-Phone: ${candidateInfo.phone}
-Skill Tested: .NET
-
-Exam Results:
-Score: ${score}/${dotnetQuestions.length} (${percentage}%)
-Time Remaining: ${Math.floor(timeLeft / 60)}:${(timeLeft % 60).toString().padStart(2, '0')}
-
-Question Details:
-${dotnetQuestions.map((q, index) => {
-    const userAnswer = currentAnswers[index];
-    const isCorrect = userAnswer === q.correct;
-    return `Q${index + 1} (${q.level}): ${isCorrect ? 'Correct' : 'Incorrect'} - User selected: ${userAnswer >= 0 ? q.options[userAnswer] : 'No answer'} | Correct: ${q.options[q.correct]}`;
-}).join('\n')}
-    `;
+    // Prepare exam results
+    const examResults = {
+        score: score,
+        totalQuestions: dotnetQuestions.length,
+        percentage: percentage
+    };
     
-    // Create mailto link
-    const mailtoLink = `mailto:nathanfielder0530@gmail.com?subject=.NET Skill Test Results - ${candidateInfo.name}&body=${encodeURIComponent(emailBody)}`;
-    
-    // Open default email client
-    window.open(mailtoLink);
+    // Use the centralized email utility
+    handleEmailSending(candidateInfo, examResults, dotnetQuestions, currentAnswers, timeLeft);
 }
