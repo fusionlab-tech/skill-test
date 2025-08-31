@@ -69,7 +69,7 @@ const reactNativeQuestions = [
 
 let currentAnswers = new Array(reactNativeQuestions.length).fill(-1);
 let examStarted = false;
-let timeLeft = 100; // 100 seconds
+let timeLeft = 300; // 300 seconds for React Native exam
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {
