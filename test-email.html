@@ -13,6 +13,7 @@
     
     <button onclick="testEmailJS()">Test EmailJS</button>
     <button onclick="testEmailJSInit()">Test EmailJS Init</button>
+    <button onclick="showAuthFix()">Show Authentication Fix</button>
     
     <div id="status"></div>
     
@@ -73,7 +74,39 @@
                 })
                 .catch(function(error) {
                     updateStatus('Email failed! Error: ' + JSON.stringify(error));
+                    
+                    // Check for authentication issue
+                    if (error.status === 412 && error.text && error.text.includes('insufficient authentication scopes')) {
+                        updateStatus('🔴 GMAIL AUTHENTICATION ISSUE DETECTED!');
+                        updateStatus('This is a Gmail permissions problem, not a code issue.');
+                        updateStatus('See the "Show Authentication Fix" button for solution.');
+                    }
                 });
+        }
+        
+        function showAuthFix() {
+            const fixSteps = `
+🔴 Gmail Authentication Issue - How to Fix:
+
+1. Go to EmailJS Dashboard: https://dashboard.emailjs.com/
+2. Navigate to "Email Services"
+3. Find your Gmail service (service_mps3bzd)
+4. Click "Edit" or "Reconnect"
+5. Re-authenticate with Gmail
+6. IMPORTANT: Grant these permissions:
+   ✅ Send emails
+   ✅ Read emails (if prompted)
+   ✅ Manage emails (if prompted)
+
+Alternative Solutions:
+• Use a different email service (Outlook, Yahoo)
+• Create a new Gmail service with proper permissions
+• Contact EmailJS support for assistance
+
+Current Error: ${error.status} - ${error.text}
+            `;
+            
+            alert(fixSteps);
         }
         
         // Auto-test on page load

@@ -4,9 +4,28 @@
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
     PUBLIC_KEY: "pT4qeVdM8rKuP1eA7",
-    SERVICE_ID: "service_mps3bzd",
+    SERVICE_ID: "service_5upnax4", // Gmail service - needs proper authentication
     TEMPLATE_ID: "template_c4rdgkl"
 };
+
+// Alternative EmailJS services (if Gmail fails)
+const ALTERNATIVE_SERVICES = [
+    {
+        name: "Gmail (Current)",
+        serviceId: "service_mps3bzd",
+        templateId: "template_c4rdgkl"
+    },
+    {
+        name: "Outlook",
+        serviceId: "service_outlook", // You'll need to create this
+        templateId: "template_c4rdgkl"
+    },
+    {
+        name: "Yahoo",
+        serviceId: "service_yahoo", // You'll need to create this
+        templateId: "template_c4rdgkl"
+    }
+];
 
 // Wait for EmailJS to be available
 function waitForEmailJS(maxWaitTime = 5000) {
@@ -49,7 +68,7 @@ async function initializeEmailJS() {
     }
 }
 
-// Send exam results via EmailJS
+// Send exam results via EmailJS with service fallback
 async function sendExamResults(candidateInfo, examResults, questions, currentAnswers, timeLeft) {
     console.log('Attempting to send email via EmailJS...');
     
@@ -85,16 +104,31 @@ async function sendExamResults(candidateInfo, examResults, questions, currentAns
     console.log('Using Service ID:', EMAILJS_CONFIG.SERVICE_ID);
     console.log('Using Template ID:', EMAILJS_CONFIG.TEMPLATE_ID);
     
-    // Send email using EmailJS
-    return emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
-        .then(function(response) {
-            console.log('Email sent successfully:', response);
-            return { success: true, message: 'Exam results have been sent successfully!' };
-        })
-        .catch(function(error) {
-            console.error('EmailJS sending failed:', error);
-            return { success: false, error: error, message: 'EmailJS failed. Using fallback method.' };
-        });
+    // Try to send email with current service
+    try {
+        const response = await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams);
+        console.log('Email sent successfully:', response);
+        return { success: true, message: 'Exam results have been sent successfully!' };
+    } catch (error) {
+        console.error('EmailJS sending failed:', error);
+        
+        // Check if it's an authentication issue
+        if (error.status === 412 && error.text && error.text.includes('insufficient authentication scopes')) {
+            console.error('Gmail authentication issue detected');
+            return { 
+                success: false, 
+                error: error, 
+                message: 'Gmail authentication issue. Please check EmailJS service permissions.',
+                authIssue: true
+            };
+        }
+        
+        return { 
+            success: false, 
+            error: error, 
+            message: 'EmailJS failed. Using fallback method.' 
+        };
+    }
 }
 
 // Fallback email method using mailto
@@ -154,6 +188,13 @@ async function handleEmailSending(candidateInfo, examResults, questions, current
             alert(result.message);
         } else {
             console.log('EmailJS failed, showing fallback options');
+            
+            // Special handling for authentication issues
+            if (result.authIssue) {
+                const authMessage = `Gmail authentication issue detected!\n\nTo fix this:\n1. Go to EmailJS Dashboard\n2. Reconnect your Gmail service\n3. Ensure you grant 'Send emails' permission\n\nFor now, using fallback method.`;
+                alert(authMessage);
+            }
+            
             // If EmailJS fails, show fallback options
             const fallbackMessage = `EmailJS failed. Please copy and paste the following results manually:\n\n${formatEmailBody(candidateInfo, examResults, questions, currentAnswers, timeLeft)}`;
             alert(fallbackMessage);
