@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next.js Programming Skill Test</title>
+    <link rel="icon" type="image/png" href="FusionLab-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="exam-container">
+            <div class="exam-header">
+                <h1>Next.js Programming Skill Assessment</h1>
+                <div class="timer" id="timer">Time: 00:00</div>
+                <button id="startBtn" class="btn-primary">Start Exam</button>
+            </div>
+            
+            <div id="examContent" style="display: none;">
+                <div id="questions"></div>
+                <div class="text-center">
+                    <button id="submitBtn" class="btn-primary" style="display: none;">Submit Exam</button>
+                </div>
+            </div>
+            
+            <div id="results" class="results" style="display: none;">
+                <h2>Exam Results</h2>
+                <div class="score" id="scoreDisplay"></div>
+                <p id="resultMessage"></p>
+                <button id="backToHome" class="btn-secondary">Back to Home</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="email-utility.js"></script>
+    <script src="exam-nextjs.js"></script>
+</body>
+</html>
