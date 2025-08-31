@@ -3,26 +3,60 @@
 
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
-    PUBLIC_KEY: "pT4qeVdM8rKuP1eA7", // Replace with your actual EmailJS public key
-    SERVICE_ID: "service_mps3bzd", // Replace with your actual EmailJS service ID
-    TEMPLATE_ID: "template_c4rdgkl" // Replace with your actual EmailJS template ID
+    PUBLIC_KEY: "pT4qeVdM8rKuP1eA7",
+    SERVICE_ID: "service_mps3bzd",
+    TEMPLATE_ID: "template_c4rdgkl"
 };
 
+// Wait for EmailJS to be available
+function waitForEmailJS(maxWaitTime = 5000) {
+    return new Promise((resolve, reject) => {
+        const startTime = Date.now();
+        
+        const checkEmailJS = () => {
+            if (typeof emailjs !== 'undefined') {
+                console.log('EmailJS library found after waiting');
+                resolve(true);
+            } else if (Date.now() - startTime > maxWaitTime) {
+                console.error('EmailJS library not loaded within timeout');
+                reject(new Error('EmailJS library not loaded'));
+            } else {
+                setTimeout(checkEmailJS, 100);
+            }
+        };
+        
+        checkEmailJS();
+    });
+}
+
 // Initialize EmailJS
-function initializeEmailJS() {
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-        return true;
+async function initializeEmailJS() {
+    try {
+        console.log('Waiting for EmailJS library...');
+        await waitForEmailJS();
+        
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+            console.log('EmailJS initialized successfully with key:', EMAILJS_CONFIG.PUBLIC_KEY);
+            return true;
+        } else {
+            console.error('EmailJS library not loaded');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error initializing EmailJS:', error);
+        return false;
     }
-    return false;
 }
 
 // Send exam results via EmailJS
-function sendExamResults(candidateInfo, examResults, questions, currentAnswers, timeLeft) {
+async function sendExamResults(candidateInfo, examResults, questions, currentAnswers, timeLeft) {
+    console.log('Attempting to send email via EmailJS...');
+    
     // Initialize EmailJS
-    if (!initializeEmailJS()) {
-        console.error('EmailJS not available');
-        return sendResultsFallback(candidateInfo, examResults, questions, currentAnswers, timeLeft);
+    if (!(await initializeEmailJS())) {
+        console.error('EmailJS initialization failed');
+        throw new Error('EmailJS not available');
     }
 
     // Prepare email body
@@ -47,6 +81,10 @@ function sendExamResults(candidateInfo, examResults, questions, currentAnswers, 
         question_details: formatQuestionDetails(questions, currentAnswers)
     };
     
+    console.log('Sending email with parameters:', templateParams);
+    console.log('Using Service ID:', EMAILJS_CONFIG.SERVICE_ID);
+    console.log('Using Template ID:', EMAILJS_CONFIG.TEMPLATE_ID);
+    
     // Send email using EmailJS
     return emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
         .then(function(response) {
@@ -54,13 +92,14 @@ function sendExamResults(candidateInfo, examResults, questions, currentAnswers, 
             return { success: true, message: 'Exam results have been sent successfully!' };
         })
         .catch(function(error) {
-            console.error('Email sending failed:', error);
-            return { success: false, error: error, message: 'Email sending failed. Using fallback method.' };
+            console.error('EmailJS sending failed:', error);
+            return { success: false, error: error, message: 'EmailJS failed. Using fallback method.' };
         });
 }
 
 // Fallback email method using mailto
 function sendResultsFallback(candidateInfo, examResults, questions, currentAnswers, timeLeft) {
+    console.log('Using fallback mailto method...');
     const emailBody = formatEmailBody(candidateInfo, examResults, questions, currentAnswers, timeLeft);
     const mailtoLink = `mailto:nathanfielder0530@gmail.com?subject=${candidateInfo.skill} Skill Test Results - ${candidateInfo.name}&body=${encodeURIComponent(emailBody)}`;
     
@@ -103,28 +142,32 @@ function formatQuestionDetails(questions, currentAnswers) {
 }
 
 // Handle email sending with user feedback
-function handleEmailSending(candidateInfo, examResults, questions, currentAnswers, timeLeft) {
-    // First try EmailJS
-    sendExamResults(candidateInfo, examResults, questions, currentAnswers, timeLeft)
-        .then(result => {
-            if (result.success) {
-                alert(result.message);
-            } else {
-                // If EmailJS fails, show fallback options
-                const fallbackMessage = `Email sending failed. Please copy and paste the following results manually:\n\n${formatEmailBody(candidateInfo, examResults, questions, currentAnswers, timeLeft)}`;
-                alert(fallbackMessage);
-                
-                // Offer fallback email option
-                if (confirm('Would you like to try opening your email client as a fallback?')) {
-                    const fallbackResult = sendResultsFallback(candidateInfo, examResults, questions, currentAnswers, timeLeft);
-                    if (!fallbackResult.success) {
-                        alert('Fallback email also failed. Please copy the results manually.');
-                    }
+async function handleEmailSending(candidateInfo, examResults, questions, currentAnswers, timeLeft) {
+    console.log('Starting email sending process...');
+    
+    try {
+        // First try EmailJS
+        const result = await sendExamResults(candidateInfo, examResults, questions, currentAnswers, timeLeft);
+        
+        if (result.success) {
+            console.log('EmailJS succeeded:', result.message);
+            alert(result.message);
+        } else {
+            console.log('EmailJS failed, showing fallback options');
+            // If EmailJS fails, show fallback options
+            const fallbackMessage = `EmailJS failed. Please copy and paste the following results manually:\n\n${formatEmailBody(candidateInfo, examResults, questions, currentAnswers, timeLeft)}`;
+            alert(fallbackMessage);
+            
+            // Offer fallback email option
+            if (confirm('Would you like to try opening your email client as a fallback?')) {
+                const fallbackResult = sendResultsFallback(candidateInfo, examResults, questions, currentAnswers, timeLeft);
+                if (!fallbackResult.success) {
+                    alert('Fallback email also failed. Please copy the results manually.');
                 }
             }
-        })
-        .catch(error => {
-            console.error('Email handling error:', error);
-            alert('Email sending encountered an error. Please copy the results manually.');
-        });
+        }
+    } catch (error) {
+        console.error('Email handling error:', error);
+        alert('Email sending encountered an error. Please copy the results manually.');
+    }
 }

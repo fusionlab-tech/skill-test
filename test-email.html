@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Test Page</title>
+    <link rel="icon" type="image/png" href="FusionLab-logo.png">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <h1>EmailJS Test Page</h1>
+    <p>This page tests EmailJS functionality</p>
+    
+    <button onclick="testEmailJS()">Test EmailJS</button>
+    <button onclick="testEmailJSInit()">Test EmailJS Init</button>
+    
+    <div id="status"></div>
+    
+    <script>
+        function updateStatus(message) {
+            document.getElementById('status').innerHTML += '<p>' + message + '</p>';
+        }
+        
+        function testEmailJSInit() {
+            updateStatus('Testing EmailJS initialization...');
+            
+            if (typeof emailjs !== 'undefined') {
+                updateStatus('EmailJS library loaded successfully');
+                
+                try {
+                    emailjs.init("pT4qeVdM8rKuP1eA7");
+                    updateStatus('EmailJS initialized successfully');
+                } catch (error) {
+                    updateStatus('EmailJS init error: ' + error.message);
+                }
+            } else {
+                updateStatus('EmailJS library not loaded');
+            }
+        }
+        
+        function testEmailJS() {
+            updateStatus('Testing EmailJS send...');
+            
+            if (typeof emailjs === 'undefined') {
+                updateStatus('EmailJS not available');
+                return;
+            }
+            
+            // Test parameters
+            const templateParams = {
+                to_email: "nathanfielder0530@gmail.com",
+                to_name: "Test User",
+                from_name: "Test Candidate",
+                from_email: "test@example.com",
+                subject: "Test Email from Skill Test Platform",
+                message: "This is a test email to verify EmailJS is working.",
+                candidate_name: "Test Candidate",
+                candidate_email: "test@example.com",
+                candidate_address: "123 Test St, Test City, Test Country",
+                candidate_phone: "123-456-7890",
+                skill_tested: "Test Skill",
+                score: "5/10",
+                percentage: "50%",
+                time_remaining: "01:30",
+                question_details: "Test question details"
+            };
+            
+            updateStatus('Sending test email...');
+            
+            emailjs.send('service_mps3bzd', 'template_c4rdgkl', templateParams)
+                .then(function(response) {
+                    updateStatus('Email sent successfully! Response: ' + JSON.stringify(response));
+                })
+                .catch(function(error) {
+                    updateStatus('Email failed! Error: ' + JSON.stringify(error));
+                });
+        }
+        
+        // Auto-test on page load
+        window.onload = function() {
+            updateStatus('Page loaded, testing EmailJS availability...');
+            testEmailJSInit();
+        };
+    </script>
+</body>
+</html>
