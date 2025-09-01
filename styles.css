@@ -214,6 +214,44 @@ input:focus, select:focus {
     margin: 20px 0;
 }
 
+/* Audio Player Styles */
+.audio-player {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.audio-player audio {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0;
+}
+
+.audio-note {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 10px 0 0 0;
+    font-style: italic;
+}
+
+/* Enhanced Audio Player for Better UX */
+.audio-player audio::-webkit-media-controls-panel {
+    background-color: #ffffff;
+}
+
+.audio-player audio::-webkit-media-controls-play-button {
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.audio-player audio::-webkit-media-controls-play-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Audio Player */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
@@ -230,5 +268,13 @@ input:focus, select:focus {
     
     header h1 {
         font-size: 2rem;
+    }
+
+    .audio-player {
+        padding: 15px;
+    }
+    
+    .audio-player audio {
+        max-width: 100%;
     }
 }

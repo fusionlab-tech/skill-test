@@ -1,69 +1,77 @@
 // Spanish Language Exam Questions - B2-C1 Level
 const spanishQuestions = [
-    // Basic Questions (3) - B2 Level
+    // Basic Questions (3) - B2 Level - More Technically Complex
     {
-        question: "Analiza esta oración:\n\"Los hallazgos de la investigación, que fueron publicados el mes pasado, han sido recibidos con considerable escepticismo por la comunidad académica.\"\n¿Qué tipo de cláusula es \"que fueron publicados el mes pasado\"?",
+        question: "Identifica la estructura gramatical en esta oración: 'No solo la empresa superó sus objetivos trimestrales, sino que también logró reducir los costos operativos en un 15%.'",
+        options: ["Inversión con adverbio negativo", "Condicional mixto", "Cláusula relativa no restrictiva", "Modo subjuntivo"],
+        correct: 0,
+        level: "basic"
+    },
+    {
+        question: "Elige la palabra correcta para completar esta oración: 'El _____ crecimiento del sector tecnológico ha creado oportunidades sin precedentes para la innovación.'",
+        options: ["floreciente", "próspero", "expansivo", "desarrollado"],
+        correct: 0,
+        level: "basic"
+    },
+    {
+        question: "Analiza esta oración: 'Los hallazgos de la investigación, que fueron publicados el mes pasado, desafían la sabiduría convencional sobre el cambio climático.' ¿Qué tipo de cláusula es 'que fueron publicados el mes pasado'?",
         options: ["Cláusula relativa restrictiva", "Cláusula relativa no restrictiva", "Cláusula adverbial", "Cláusula sustantiva"],
         correct: 1,
         level: "basic"
     },
-    {
-        question: "En la oración:\n\"No solo la empresa superó sus objetivos trimestrales, sino que también logró reducir los costos operativos en un 15%.\"\n¿Qué estructura gramatical se está utilizando?",
-        options: ["Inversión con adverbio negativo", "Construcción de voz pasiva", "Modo subjuntivo", "Frase gerundial"],
-        correct: 0,
-        level: "basic"
-    },
-    {
-        question: "Dado este texto:\n\"El campo floreciente de la inteligencia artificial ha precipitado dilemas éticos sin precedentes que desafían nuestra comprensión fundamental de la conciencia y autonomía humanas.\"\n¿Qué significa 'floreciente' en este contexto?",
-        options: ["Declinando rápidamente", "Creciendo y desarrollándose", "Controvertido y disputado", "Tecnológicamente avanzado"],
-        correct: 1,
-        level: "basic"
-    },
     
-    // Middle Questions (3) - B2+ Level
+    // Middle Questions (3) - B2+ Level - More Complex
     {
-        question: "Analiza esta oración compleja:\n\"De haber implementado el gobierno las regulaciones ambientales propuestas antes, la crisis ecológica actual podría haber sido evitada, aunque las implicaciones económicas habrían sido sustanciales.\"\n¿Qué estructura condicional se usa aquí?",
-        options: ["Tercer condicional con referencia temporal mixta", "Segundo condicional con pretérito pluscuamperfecto", "Condicional mixto (pretérito pluscuamperfecto + habría)", "Condicional invertido con modal"],
-        correct: 2,
+        question: "Completa esta oración con la estructura condicional apropiada: 'Si el gobierno _____ más financiamiento para proyectos de energía renovable, nosotros _____ haber logrado nuestros objetivos de reducción de carbono para ahora.'",
+        options: ["hubiera proporcionado / habríamos", "proporcionara / podríamos", "proporcionaría / habríamos", "proporciona / podremos"],
+        correct: 0,
         level: "middle"
     },
     {
-        question: "Considera este pasaje académico:\n\"El fenómeno de la disonancia cognitiva, mediante el cual los individuos experimentan malestar psicológico cuando sus creencias entran en conflicto con sus acciones, tiene implicaciones profundas para las intervenciones de cambio conductual.\"\n¿Qué dispositivo retórico está funcionando 'mediante el cual'?",
-        options: ["Un pronombre relativo", "Un adverbio conjuntivo", "Una conjunción subordinante", "Un marcador discursivo"],
-        correct: 2,
+        question: "Identifica el recurso retórico en esta oración: 'La infraestructura de la ciudad se derrumbó como un castillo de naipes durante la crisis económica.'",
+        options: ["Metáfora", "Símil", "Hipérbole", "Personificación"],
+        correct: 1,
         level: "middle"
     },
     {
-        question: "En esta oración:\n\"La decisión de la empresa de diversificar su portafolio, manteniendo simultáneamente sus competencias centrales, ejemplifica la previsión estratégica en un mercado cada vez más volátil.\"\n¿Cuál es la función del infinitivo 'diversificar'?",
-        options: ["Sujeto de la oración", "Objeto de la preposición", "Modificador del sustantivo 'decisión'", "Complemento del verbo 'ejemplifica'"],
-        correct: 2,
+        question: "Elige la palabra más apropiada para este contexto académico: 'La metodología del estudio _____ varias limitaciones que pueden afectar la validez de sus conclusiones.'",
+        options: ["exhibe", "demuestra", "revela", "presenta"],
+        correct: 0,
         level: "middle"
     },
     
-    // Advanced Questions (4) - C1 Level
+    // Advanced Questions (4) - C1 Level - Audio Listening Comprehension
     {
-        question: "Examina esta construcción sofisticada:\n\"De no ser por los avances tecnológicos sin precedentes de la última década, el cambio de paradigma actual en la metodología educativa apenas sería concebible, y mucho menos implementable.\"\n¿Qué características gramaticales hacen que esta oración sea particularmente compleja?",
-        options: ["Subjuntivo invertido, múltiples verbos modales y nominalización", "Voz pasiva, cláusulas relativas y frases participiales", "Cláusulas condicionales, construcciones de infinitivo y gerundios", "Modo subjuntivo, inversión y frases adverbiales complejas"],
-        correct: 0,
-        level: "advanced"
-    },
-    {
-        question: "Considera este discurso académico:\n\"Los fundamentos epistemológicos sobre los que se predica la indagación científica contemporánea necesitan una reevaluación fundamental de los enfoques metodológicos, particularmente a la luz de paradigmas interdisciplinarios emergentes que desafían los límites disciplinarios tradicionales.\"\n¿Cuál es la función retórica principal de esta oración?",
-        options: ["Presentar una hipótesis", "Establecer marco teórico", "Criticar metodología existente", "Proponer una solución"],
+        question: "Escucha el audio y responde la pregunta: ¿Cuál es el argumento principal del hablante sobre la inteligencia artificial en la atención médica?",
+        audioSrc: "audio/spanish_ai_healthcare.mp3",
+        options: ["La IA reemplazará completamente a los médicos humanos dentro de una década", "La IA debe usarse como herramienta complementaria para mejorar el diagnóstico médico", "La IA presenta riesgos significativos que superan sus beneficios en medicina", "La IA solo es adecuada para tareas administrativas en la atención médica"],
         correct: 1,
-        level: "advanced"
+        level: "advanced",
+        audioType: true
     },
     {
-        question: "Analiza esta estructura de oración compleja:\n\"No obstante los considerables desafíos inherentes a implementar una agenda de reforma tan integral, los beneficios potenciales—que van desde la eficiencia mejorada y mejores resultados hasta una mayor satisfacción de las partes interesadas—superan con creces los costos y riesgos asociados.\"\n¿Cuál es la función de la frase encerrada entre guiones?",
-        options: ["Explicación parentética", "Frase apositiva", "Modificador no restrictivo", "Todas las anteriores"],
-        correct: 3,
-        level: "advanced"
-    },
-    {
-        question: "En esta construcción sofisticada:\n\"El grado en que estas proposiciones teóricas pueden ser operacionalizadas en contextos prácticos depende no meramente de su validez inherente, sino también del grado en que los marcos institucionales y los intereses de las partes interesadas se alinean con los principios subyacentes.\"\n¿Qué estructura gramatical crea la complejidad?",
-        options: ["Múltiples cláusulas embebidas y estructura paralela", "Voz pasiva y verbos modales", "Frases de infinitivo y gerundios", "Cláusulas relativas y construcciones participiales"],
+        question: "Escucha el audio e identifica el tono y propósito del hablante: ¿Cuál es la actitud del hablante hacia la política ambiental propuesta?",
+        audioSrc: "audio/spanish_environmental_policy.mp3",
+        options: ["Escéptico pero abierto al compromiso", "Fuertemente partidario con reservas", "Completamente opuesto a cualquier cambio", "Neutral y analítico"],
         correct: 0,
-        level: "advanced"
+        level: "advanced",
+        audioType: true
+    },
+    {
+        question: "Escucha el audio y responde: ¿Qué recomendación específica hace el hablante con respecto a la planificación urbana?",
+        audioSrc: "audio/spanish_urban_planning.mp3",
+        options: ["Aumentar espacios de estacionamiento en centros urbanos", "Implementar más espacios verdes y zonas peatonales", "Construir rascacielos más altos para acomodar el crecimiento poblacional", "Reducir el financiamiento del transporte público"],
+        correct: 1,
+        level: "advanced",
+        audioType: true
+    },
+    {
+        question: "Escucha el audio y determina: ¿Cuál es la suposición subyacente en el argumento del hablante sobre la reforma educativa?",
+        audioSrc: "audio/spanish_education_reform.mp3",
+        options: ["Los métodos de enseñanza tradicionales son completamente inefectivos", "La tecnología por sí sola puede resolver los desafíos educativos", "El compromiso del estudiante es el indicador principal del éxito del aprendizaje", "Las pruebas estandarizadas miden con precisión el logro del estudiante"],
+        correct: 2,
+        level: "advanced",
+        audioType: true
     }
 ];
 
@@ -128,17 +136,39 @@ function renderQuestions() {
         levelBadge.style.cssText = 'background: #007bff; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-bottom: 10px; display: inline-block;';
         levelBadge.textContent = q.level.toUpperCase();
         
-        questionDiv.innerHTML = `
-            ${levelBadge.outerHTML}
-            <h3>Question ${index + 1}: ${q.question}</h3>
-            <div class="options">
-                ${q.options.map((option, optIndex) => `
-                    <div class="option" data-question="${index}" data-option="${optIndex}">
-                        ${option}
-                    </div>
-                `).join('')}
-            </div>
-        `;
+        // Check if this is an audio question
+        if (q.audioType) {
+            questionDiv.innerHTML = `
+                ${levelBadge.outerHTML}
+                <h3>Question ${index + 1}: ${q.question}</h3>
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="${q.audioSrc}" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <p class="audio-note"><em>Escucha el audio antes de responder la pregunta.</em></p>
+                </div>
+                <div class="options">
+                    ${q.options.map((option, optIndex) => `
+                        <div class="option" data-question="${index}" data-option="${optIndex}">
+                            ${option}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            questionDiv.innerHTML = `
+                ${levelBadge.outerHTML}
+                <h3>Question ${index + 1}: ${q.question}</h3>
+                <div class="options">
+                    ${q.options.map((option, optIndex) => `
+                        <div class="option" data-question="${index}" data-option="${optIndex}">
+                            ${option}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
         
         questionsContainer.appendChild(questionDiv);
     });

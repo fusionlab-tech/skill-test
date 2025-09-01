@@ -40,30 +40,38 @@ const englishQuestions = [
         level: "middle"
     },
     
-    // Advanced Questions (4) - C1 Level
+    // Advanced Questions (4) - C1 Level - Audio Listening Comprehension
     {
-        question: "Examine this sophisticated construction:\n\"Were it not for the unprecedented technological advances of the past decade, the current paradigm shift in educational methodology would scarcely be conceivable, let alone implementable.\"\nWhat grammatical features make this sentence particularly complex?",
-        options: ["Inverted subjunctive, multiple modal verbs, and nominalization", "Passive voice, relative clauses, and participle phrases", "Conditional clauses, infinitive constructions, and gerunds", "Subjunctive mood, inversion, and complex adverbial phrases"],
-        correct: 0,
-        level: "advanced"
-    },
-    {
-        question: "Consider this academic discourse:\n\"The epistemological foundations upon which contemporary scientific inquiry is predicated necessitate a fundamental reassessment of methodological approaches, particularly in light of emerging interdisciplinary paradigms that challenge traditional disciplinary boundaries.\"\nWhat is the primary rhetorical function of this sentence?",
-        options: ["To present a hypothesis", "To establish theoretical framework", "To critique existing methodology", "To propose a solution"],
+        question: "Listen to the audio and answer the question: What is the speaker's main argument about artificial intelligence in healthcare?",
+        audioSrc: "audio/english_ai_healthcare.mp3",
+        options: ["AI will completely replace human doctors within a decade", "AI should be used as a complementary tool to enhance medical diagnosis", "AI poses significant risks that outweigh its benefits in medicine", "AI is only suitable for administrative tasks in healthcare"],
         correct: 1,
-        level: "advanced"
+        level: "advanced",
+        audioType: true
     },
     {
-        question: "Analyze this complex sentence structure:\n\"Notwithstanding the considerable challenges inherent in implementing such a comprehensive reform agenda, the potential benefits—ranging from enhanced efficiency and improved outcomes to greater stakeholder satisfaction—far outweigh the associated costs and risks.\"\nWhat is the function of the dash-enclosed phrase?",
-        options: ["Parenthetical explanation", "Appositive phrase", "Non-restrictive modifier", "All of the above"],
-        correct: 3,
-        level: "advanced"
-    },
-    {
-        question: "In this sophisticated construction:\n\"The extent to which these theoretical propositions can be operationalized in practical contexts depends not merely on their inherent validity, but also on the degree to which institutional frameworks and stakeholder interests align with the underlying principles.\"\nWhat grammatical structure creates the complexity?",
-        options: ["Multiple embedded clauses and parallel structure", "Passive voice and modal verbs", "Infinitive phrases and gerunds", "Relative clauses and participle constructions"],
+        question: "Listen to the audio and identify the speaker's tone and purpose: What is the speaker's attitude toward the proposed environmental policy?",
+        audioSrc: "audio/english_environmental_policy.mp3",
+        options: ["Skeptical but open to compromise", "Strongly supportive with reservations", "Completely opposed to any changes", "Neutral and analytical"],
         correct: 0,
-        level: "advanced"
+        level: "advanced",
+        audioType: true
+    },
+    {
+        question: "Listen to the audio and answer: What specific recommendation does the speaker make regarding urban planning?",
+        audioSrc: "audio/english_urban_planning.mp3",
+        options: ["Increase parking spaces in city centers", "Implement more green spaces and pedestrian zones", "Build taller skyscrapers to accommodate population growth", "Reduce public transportation funding"],
+        correct: 1,
+        level: "advanced",
+        audioType: true
+    },
+    {
+        question: "Listen to the audio and determine: What is the underlying assumption in the speaker's argument about education reform?",
+        audioSrc: "audio/english_education_reform.mp3",
+        options: ["Traditional teaching methods are completely ineffective", "Technology alone can solve educational challenges", "Student engagement is the primary indicator of learning success", "Standardized testing accurately measures student achievement"],
+        correct: 2,
+        level: "advanced",
+        audioType: true
     }
 ];
 
@@ -128,17 +136,39 @@ function renderQuestions() {
         levelBadge.style.cssText = 'background: #007bff; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-bottom: 10px; display: inline-block;';
         levelBadge.textContent = q.level.toUpperCase();
         
-        questionDiv.innerHTML = `
-            ${levelBadge.outerHTML}
-            <h3>Question ${index + 1}: ${q.question}</h3>
-            <div class="options">
-                ${q.options.map((option, optIndex) => `
-                    <div class="option" data-question="${index}" data-option="${optIndex}">
-                        ${option}
-                    </div>
-                `).join('')}
-            </div>
-        `;
+        // Check if this is an audio question
+        if (q.audioType) {
+            questionDiv.innerHTML = `
+                ${levelBadge.outerHTML}
+                <h3>Question ${index + 1}: ${q.question}</h3>
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="${q.audioSrc}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p class="audio-note"><em>Listen to the audio before answering the question.</em></p>
+                </div>
+                <div class="options">
+                    ${q.options.map((option, optIndex) => `
+                        <div class="option" data-question="${index}" data-option="${optIndex}">
+                            ${option}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            questionDiv.innerHTML = `
+                ${levelBadge.outerHTML}
+                <h3>Question ${index + 1}: ${q.question}</h3>
+                <div class="options">
+                    ${q.options.map((option, optIndex) => `
+                        <div class="option" data-question="${index}" data-option="${optIndex}">
+                            ${option}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
         
         questionsContainer.appendChild(questionDiv);
     });
