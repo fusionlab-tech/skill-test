@@ -2,19 +2,19 @@
 const reactNativeQuestions = [
     // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is the output of this React Native code?\n```javascript\nconst [count, setCount] = useState(0);\n\nuseEffect(() => {\n  setCount(count + 1);\n  setCount(count + 1);\n}, []);\n\nconsole.log(count);\n```",
+        question: "What is the output of this React Native code?\n\n<pre><code>const [count, setCount] = useState(0);\n\nuseEffect(() => {\n  setCount(count + 1);\n  setCount(count + 1);\n}, []);\n\nconsole.log(count);</code></pre>",
         options: ["0", "1", "2", "Error"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "Consider this component:\n```javascript\nconst MyComponent = ({ data }) => {\n  const [items, setItems] = useState(data);\n  \n  useEffect(() => {\n    setItems(data);\n  }, [data]);\n  \n  return <Text>{items.length}</Text>;\n};\n```\nWhat happens when the data prop changes?",
+        question: "Consider this component:\n\n<pre><code>const MyComponent = ({ data }) => {\n  const [items, setItems] = useState(data);\n  \n  useEffect(() => {\n    setItems(data);\n  }, [data]);\n  \n  return &lt;Text&gt;{items.length}&lt;/Text&gt;;\n};</code></pre>\n\nWhat happens when the data prop changes?",
         options: ["Component re-renders with new data", "Component doesn't update", "Component crashes", "Component shows old data"],
         correct: 0,
         level: "basic"
     },
     {
-        question: "What happens when you run this code?\n```javascript\ntry {\n  const result = JSON.parse('invalid json');\n  console.log(result);\n} catch (error) {\n  console.log(error.name);\n}\n```",
+        question: "What happens when you run this code?\n\n<pre><code>try {\n  const result = JSON.parse('invalid json');\n  console.log(result);\n} catch (error) {\n  console.log(error.name);\n}</code></pre>",
         options: ["SyntaxError", "TypeError", "ReferenceError", "No error"],
         correct: 0,
         level: "basic"
@@ -22,7 +22,7 @@ const reactNativeQuestions = [
     
     // Middle Questions (3) - Enhanced complexity
     {
-        question: "Consider this React Native navigation setup:\n```javascript\nconst Stack = createStackNavigator();\n\nfunction AppNavigator() {\n  return (\n    <Stack.Navigator>\n      <Stack.Screen name=\"Home\" component={HomeScreen} />\n      <Stack.Screen \n        name=\"Profile\" \n        component={ProfileScreen}\n        options={{\n          headerShown: false,\n          gestureEnabled: true\n        }}\n      />\n    </Stack.Navigator>\n  );\n}\n```\nWhat happens when navigating to the Profile screen?",
+        question: "Consider this React Native navigation setup:\n\n<pre><code>const Stack = createStackNavigator();\n\nfunction AppNavigator() {\n  return (\n    &lt;Stack.Navigator&gt;\n      &lt;Stack.Screen name=\"Home\" component={HomeScreen} /&gt;\n      &lt;Stack.Screen \n        name=\"Profile\" \n        component={ProfileScreen}\n        options={{\n          headerShown: false,\n          gestureEnabled: true\n        }}\n      /&gt;\n    &lt;/Stack.Navigator&gt;\n  );\n}</code></pre>\n\nWhat happens when navigating to the Profile screen?",
         options: ["The header is hidden and gestures are enabled", "The header is shown and gestures are disabled", "The screen transitions with animation", "The screen loads without navigation"],
         correct: 0,
         level: "middle"

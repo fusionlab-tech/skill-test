@@ -2,19 +2,19 @@
 const golangQuestions = [
     // Basic Questions (3) - B2 Level - More Technically Complex
     {
-        question: "Consider this Go code:\n```go\nfunc processData(data []int) []int {\n    result := make([]int, 0, len(data))\n    for _, v := range data {\n        if v > 0 {\n            result = append(result, v*2)\n        }\n    }\n    return result\n}\n```\nWhat is the time complexity of this function and why is the capacity pre-allocated?",
+        question: "Consider this Go code:\n\n<pre><code>func processData(data []int) []int {\n    result := make([]int, 0, len(data))\n    for _, v := range data {\n        if v > 0 {\n            result = append(result, v*2)\n        }\n    }\n    return result\n}</code></pre>\n\nWhat is the time complexity of this function and why is the capacity pre-allocated?",
         options: ["O(n²) - for nested operations", "O(n) - linear iteration with pre-allocated capacity to avoid slice reallocation", "O(log n) - logarithmic growth due to append operations", "O(1) - constant time due to pre-allocation"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "Analyze this Go code:\n```go\nfunc main() {\n    var wg sync.WaitGroup\n    ch := make(chan int, 1)\n    \n    wg.Add(1)\n    go func() {\n        defer wg.Done()\n        ch <- 42\n    }()\n    \n    wg.Wait()\n    close(ch)\n    fmt.Println(<-ch)\n}\n```\nWhat potential issue exists in this code?",
+        question: "Analyze this Go code:\n\n<pre><code>func main() {\n    var wg sync.WaitGroup\n    ch := make(chan int, 1)\n    \n    wg.Add(1)\n    go func() {\n        defer wg.Done()\n        ch <- 42\n    }()\n    \n    wg.Wait()\n    close(ch)\n    fmt.Println(<-ch)\n}</code></pre>\n\nWhat potential issue exists in this code?",
         options: ["Deadlock due to unbuffered channel", "Race condition on channel access", "Reading from closed channel will panic", "No issues - code is correct"],
         correct: 2,
         level: "basic"
     },
     {
-        question: "Examine this Go code:\n```go\ntype Config struct {\n    Host string\n    Port int\n    Timeout time.Duration\n}\n\nfunc NewConfig() *Config {\n    return &Config{\n        Host: \"localhost\",\n        Port: 8080,\n        Timeout: 30 * time.Second,\n    }\n}\n```\nWhat is the memory allocation pattern here and why is it used?",
+        question: "Examine this Go code:\n\n<pre><code>type Config struct {\n    Host string\n    Port int\n    Timeout time.Duration\n}\n\nfunc NewConfig() *Config {\n    return &Config{\n        Host: \"localhost\",\n        Port: 8080,\n        Timeout: 30 * time.Second,\n    }\n}</code></pre>\n\nWhat is the memory allocation pattern here and why is it used?",
         options: ["Stack allocation for small structs", "Heap allocation with pointer return for potential nil checks and method receivers", "Global variable allocation", "Register allocation for performance"],
         correct: 1,
         level: "basic"
@@ -22,7 +22,7 @@ const golangQuestions = [
     
     // Middle Questions (3) - B2+ Level - More Complex
     {
-        question: "Consider this Go code:\n```go\nfunc processItems(items []Item) error {\n    var mu sync.RWMutex\n    var results []Result\n    \n    for i := 0; i < len(items); i += 10 {\n        end := i + 10\n        if end > len(items) {\n            end = len(items)\n        }\n        \n        batch := items[i:end]\n        go func(batch []Item) {\n            for _, item := range batch {\n                result := processItem(item)\n                mu.Lock()\n                results = append(results, result)\n                mu.Unlock()\n            }\n        }(batch)\n    }\n    \n    return nil\n}\n```\nWhat performance issue exists in this concurrent code?",
+        question: "Consider this Go code:\n\n<pre><code>func processItems(items []Item) error {\n    var mu sync.RWMutex\n    var results []Result\n    \n    for i := 0; i < len(items); i += 10 {\n        end := i + 10\n        if end > len(items) {\n            end = len(items)\n        }\n        \n        batch := items[i:end]\n        go func(batch []Item) {\n            for _, item := range batch {\n                result := processItem(item)\n                mu.Lock()\n                results = append(results, result)\n                mu.Unlock()\n            }\n        }(batch)\n    }\n    \n    return nil\n}</code></pre>\n\nWhat performance issue exists in this concurrent code?",
         options: ["Excessive goroutine creation", "Lock contention due to frequent mutex operations", "Memory leak from unbounded slice growth", "All of the above"],
         correct: 3,
         level: "middle"

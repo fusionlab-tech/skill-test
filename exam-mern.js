@@ -2,19 +2,19 @@
 const mernQuestions = [
     // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is the output of this code?\n```javascript\nconst arr = [1, 2, 3];\nconst newArr = arr.map(x => x * 2);\narr.push(4);\nconsole.log(newArr);\n```",
+        question: "What is the output of this code?\n\n<pre><code>const arr = [1, 2, 3];\nconst newArr = arr.map(x => x * 2);\narr.push(4);\nconsole.log(newArr);</code></pre>",
         options: ["[1, 2, 3, 4]", "[2, 4, 6]", "[2, 4, 6, 8]", "[1, 2, 3]"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "Consider this code:\n```javascript\nlet x = 5;\nconst y = x++;\nconsole.log(`x: ${x}, y: ${y}`);\n```\nWhat is the output?",
+        question: "Consider this code:\n\n<pre><code>let x = 5;\nconst y = x++;\nconsole.log(`x: ${x}, y: ${y}`);</code></pre>\n\nWhat is the output?",
         options: ["x: 5, y: 5", "x: 6, y: 5", "x: 5, y: 6", "x: 6, y: 6"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "What happens when you run this code?\n```javascript\ntry {\n    const obj = null;\n    console.log(obj.property);\n} catch (error) {\n    console.log(error.name);\n}\n```",
+        question: "What happens when you run this code?\n\n<pre><code>try {\n    const obj = null;\n    console.log(obj.property);\n} catch (error) {\n    console.log(error.name);\n}</code></pre>",
         options: ["TypeError", "ReferenceError", "Error", "No error"],
         correct: 0,
         level: "basic"
@@ -22,7 +22,7 @@ const mernQuestions = [
     
     // Middle Questions (3) - Enhanced complexity
     {
-        question: "Consider this MongoDB aggregation pipeline:\n```javascript\nconst result = await Order.aggregate([\n  { $match: { status: 'completed' } },\n  { $group: { \n    _id: '$customerId', \n    totalSpent: { $sum: '$amount' },\n    orderCount: { $sum: 1 }\n  }},\n  { $sort: { totalSpent: -1 } },\n  { $limit: 10 }\n]);\n```\nWhat does this pipeline accomplish?",
+        question: "Consider this MongoDB aggregation pipeline:\n\n<pre><code>const result = await Order.aggregate([\n  { $match: { status: 'completed' } },\n  { $group: { \n    _id: '$customerId', \n    totalSpent: { $sum: '$amount' },\n    orderCount: { $sum: 1 }\n  }},\n  { $sort: { totalSpent: -1 } },\n  { $limit: 10 }\n]);</code></pre>\n\nWhat does this pipeline accomplish?",
         options: ["Finds all completed orders", "Groups orders by customer and calculates totals", "Sorts orders by amount", "Counts total orders"],
         correct: 1,
         level: "middle"

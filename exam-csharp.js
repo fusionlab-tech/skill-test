@@ -2,19 +2,19 @@
 const csharpQuestions = [
     // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is the output of this code?\n```csharp\nint x = 5;\nint y = x++;\nConsole.WriteLine($\"x: {x}, y: {y}\");\n```",
+        question: "What is the output of this code?\n\n<pre><code>int x = 5;\nint y = x++;\nConsole.WriteLine($\"x: {x}, y: {y}\");</code></pre>",
         options: ["x: 5, y: 5", "x: 6, y: 5", "x: 5, y: 6", "x: 6, y: 6"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "Consider this code:\n```csharp\nstring str1 = \"Hello\";\nstring str2 = \"Hello\";\nbool result1 = str1 == str2;\nbool result2 = ReferenceEquals(str1, str2);\n```\nWhat are the values of result1 and result2?",
+        question: "Consider this code:\n\n<pre><code>string str1 = \"Hello\";\nstring str2 = \"Hello\";\nbool result1 = str1 == str2;\nbool result2 = ReferenceEquals(str1, str2);</code></pre>\n\nWhat are the values of result1 and result2?",
         options: ["true, true", "true, false", "false, true", "false, false"],
         correct: 0,
         level: "basic"
     },
     {
-        question: "What happens when you run this code?\n```csharp\ntry {\n    int[] arr = new int[5];\n    arr[10] = 20;\n} catch (Exception ex) {\n    Console.WriteLine(ex.GetType().Name);\n}\n```",
+        question: "What happens when you run this code?\n\n<pre><code>try {\n    int[] arr = new int[5];\n    arr[10] = 20;\n} catch (Exception ex) {\n    Console.WriteLine(ex.GetType().Name);\n}</code></pre>",
         options: ["IndexOutOfRangeException", "ArrayTypeMismatchException", "ArgumentException", "OutOfMemoryException"],
         correct: 0,
         level: "basic"
@@ -22,19 +22,19 @@ const csharpQuestions = [
     
     // Middle Questions (3) - Enhanced complexity
     {
-        question: "Consider the following code:\n```csharp\npublic class DataProcessor<T> where T : class, new()\n{\n    private readonly T _data;\n    public DataProcessor() => _data = new T();\n}\n```\nWhat constraint does this generic class enforce?",
+        question: "Consider the following code:\n\n<pre><code>public class DataProcessor<T> where T : class, new()\n{\n    private readonly T _data;\n    public DataProcessor() => _data = new T();\n}</code></pre>\n\nWhat constraint does this generic class enforce?",
         options: ["T must be a reference type with a parameterless constructor", "T must be a value type", "T must implement IEnumerable", "T must inherit from DataProcessor"],
         correct: 0,
         level: "middle"
     },
     {
-        question: "In the following async method:\n```csharp\npublic async Task<string> ProcessDataAsync()\n{\n    var result = await GetDataAsync();\n    return result.Process();\n}\n```\nWhat happens if GetDataAsync() throws an exception?",
+        question: "In the following async method:\n\n<pre><code>public async Task<string> ProcessDataAsync()\n{\n    var result = await GetDataAsync();\n    return result.Process();\n}</code></pre>\n\nWhat happens if GetDataAsync() throws an exception?",
         options: ["The exception is automatically caught and logged", "The exception is wrapped in an AggregateException", "The exception propagates to the caller", "The method returns null"],
         correct: 2,
         level: "middle"
     },
     {
-        question: "Given this LINQ query:\n```csharp\nvar result = items\n    .Where(x => x.IsActive)\n    .Select(x => new { x.Id, x.Name })\n    .ToList();\n```\nWhen is the query actually executed?",
+        question: "Given this LINQ query:\n\n<pre><code>var result = items\n    .Where(x => x.IsActive)\n    .Select(x => new { x.Id, x.Name })\n    .ToList();</code></pre>\n\nWhen is the query actually executed?",
         options: ["Immediately when the query is defined", "When ToList() is called", "When the result is first accessed", "When the items collection changes"],
         correct: 1,
         level: "middle"
@@ -42,19 +42,19 @@ const csharpQuestions = [
     
     // Advanced Questions (4) - Enhanced complexity
     {
-        question: "Consider this code:\n```csharp\npublic class Cache<T>\n{\n    private readonly ConcurrentDictionary<string, T> _cache = new();\n    \n    public T GetOrAdd(string key, Func<string, T> factory)\n    {\n        return _cache.GetOrAdd(key, factory);\n    }\n}\n```\nWhat potential issue exists with this implementation?",
+        question: "Consider this code:\n\n<pre><code>public class Cache<T>\n{\n    private readonly ConcurrentDictionary<string, T> _cache = new();\n    \n    public T GetOrAdd(string key, Func<string, T> factory)\n    {\n        return _cache.GetOrAdd(key, factory);\n    }\n}</code></pre>\n\nWhat potential issue exists with this implementation?",
         options: ["The factory delegate might be called multiple times for the same key", "The cache is not thread-safe", "The factory delegate is never called", "The cache will grow indefinitely"],
         correct: 0,
         level: "advanced"
     },
     {
-        question: "In this pattern:\n```csharp\npublic class ServiceLocator\n{\n    private static readonly Dictionary<Type, object> _services = new();\n    \n    public static void Register<T>(T service) => _services[typeof(T)] = service;\n    public static T Resolve<T>() => (T)_services[typeof(T)];\n}\n```\nWhat design principle does this violate?",
+        question: "In this pattern:\n\n<pre><code>public class ServiceLocator\n{\n    private static readonly Dictionary<Type, object> _services = new();\n    \n    public static void Register<T>(T service) => _services[typeof(T)] = service;\n    public static T Resolve<T>() => (T)_services[typeof(T)];\n}</code></pre>\n\nWhat design principle does this violate?",
         options: ["Single Responsibility Principle", "Dependency Inversion Principle", "Open/Closed Principle", "Interface Segregation Principle"],
         correct: 1,
         level: "advanced"
     },
     {
-        question: "Given this expression tree:\n```csharp\nExpression<Func<Person, bool>> filter = p => p.Age > 18 && p.IsActive;\n```\nWhat is the primary use case for expression trees in C#?",
+        question: "Given this expression tree:\n\n<pre><code>Expression<Func<Person, bool>> filter = p => p.Age > 18 && p.IsActive;</code></pre>\n\nWhat is the primary use case for expression trees in C#?",
         options: ["Runtime code generation", "Compile-time optimization", "LINQ to SQL translation", "Reflection-based property access"],
         correct: 2,
         level: "advanced"

@@ -2,19 +2,19 @@
 const dotnetQuestions = [
     // Basic Questions (3) - Enhanced technical complexity
     {
-        question: "What is the output of this code?\n```csharp\nstring str = \"Hello\";\nstr += \" World\";\nConsole.WriteLine(str);\nConsole.WriteLine(str.GetHashCode());\n```",
+        question: "What is the output of this code?\n\n<pre><code>string str = \"Hello\";\nstr += \" World\";\nConsole.WriteLine(str);\nConsole.WriteLine(str.GetHashCode());</code></pre>",
         options: ["Hello World\\nSame hash code", "Hello World\\nDifferent hash code", "Hello\\nSame hash code", "Error"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "Consider this code:\n```csharp\nint[] numbers = { 1, 2, 3, 4, 5 };\nvar result = numbers.Where(n => n > 2).ToList();\nnumbers[0] = 10;\nConsole.WriteLine(result[0]);\n```\nWhat is the output?",
+        question: "Consider this code:\n\n<pre><code>int[] numbers = { 1, 2, 3, 4, 5 };\nvar result = numbers.Where(n => n > 2).ToList();\nnumbers[0] = 10;\nConsole.WriteLine(result[0]);</code></pre>\n\nWhat is the output?",
         options: ["1", "3", "10", "Error"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "What happens when you run this code?\n```csharp\ntry {\n    object obj = null;\n    string str = obj.ToString();\n} catch (Exception ex) {\n    Console.WriteLine(ex.GetType().Name);\n}\n```",
+        question: "What happens when you run this code?\n\n<pre><code>try {\n    object obj = null;\n    string str = obj.ToString();\n} catch (Exception ex) {\n    Console.WriteLine(ex.GetType().Name);\n}</code></pre>",
         options: ["NullReferenceException", "InvalidOperationException", "ArgumentException", "No exception"],
         correct: 0,
         level: "basic"
@@ -22,7 +22,7 @@ const dotnetQuestions = [
     
     // Middle Questions (3) - Enhanced complexity
     {
-        question: "Consider this ASP.NET Core middleware pipeline:\n```csharp\napp.UseExceptionHandler(\"/Error\");\napp.UseHttpsRedirection();\napp.UseStaticFiles();\napp.UseRouting();\napp.UseAuthentication();\napp.UseAuthorization();\napp.UseEndpoints(endpoints => {\n    endpoints.MapControllers();\n});\n```\nWhat happens if an exception occurs in UseStaticFiles()?",
+        question: "Consider this ASP.NET Core middleware pipeline:\n\n<pre><code>app.UseExceptionHandler(\"/Error\");\napp.UseHttpsRedirection();\napp.UseStaticFiles();\napp.UseRouting();\napp.UseAuthentication();\napp.UseAuthorization();\napp.UseEndpoints(endpoints => {\n    endpoints.MapControllers();\n});</code></pre>\n\nWhat happens if an exception occurs in UseStaticFiles()?",
         options: ["The exception is logged and ignored", "The request continues to the next middleware", "The exception handler middleware catches it", "The application crashes"],
         correct: 2,
         level: "middle"
