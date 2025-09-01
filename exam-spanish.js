@@ -77,7 +77,7 @@ const spanishQuestions = [
 
 let currentAnswers = new Array(spanishQuestions.length).fill(-1);
 let examStarted = false;
-let timeLeft = 300; // 300 seconds for language exam
+let timeLeft = 400; // 400 seconds for language exam
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {

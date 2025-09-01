@@ -69,7 +69,7 @@ const reactjsQuestions = [
 
 let currentAnswers = new Array(reactjsQuestions.length).fill(-1);
 let examStarted = false;
-let timeLeft = 300; // 300 seconds for React.js exam
+let timeLeft = 400; // 400 seconds for React.js exam
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {

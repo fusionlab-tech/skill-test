@@ -69,7 +69,7 @@ const csharpQuestions = [
 
 let currentAnswers = new Array(csharpQuestions.length).fill(-1);
 let examStarted = false;
-let timeLeft = 300; // 300 seconds for C# exam
+let timeLeft = 400; // 400 seconds for C# exam
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {

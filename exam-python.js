@@ -69,7 +69,7 @@ const pythonQuestions = [
 
 let currentAnswers = new Array(pythonQuestions.length).fill(-1);
 let examStarted = false;
-let timeLeft = 300; // 300 seconds for Python exam
+let timeLeft = 400; // 400 seconds for Python exam
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {
