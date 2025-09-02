@@ -40,35 +40,35 @@ const spanishQuestions = [
         level: "middle"
     },
     
-    // Advanced Questions (4) - C1 Level - Audio Listening Comprehension
+    // Advanced Questions (4) - B2+ Level - Audio Listening Comprehension (Simplified)
     {
-        question: "Escucha el audio y responde la pregunta: ¿Cuál es el argumento principal del hablante sobre la inteligencia artificial en la atención médica?",
+        question: "Escucha el audio sobre inteligencia artificial en medicina. ¿Qué dice el hablante sobre el futuro de la IA en los hospitales?",
         audioSrc: "audio/spanish_ai_healthcare.mp3",
-        options: ["La IA reemplazará completamente a los médicos humanos dentro de una década", "La IA debe usarse como herramienta complementaria para mejorar el diagnóstico médico", "La IA presenta riesgos significativos que superan sus beneficios en medicina", "La IA solo es adecuada para tareas administrativas en la atención médica"],
+        options: ["La IA reemplazará a todos los médicos", "La IA ayudará a los médicos a hacer mejor su trabajo", "La IA es muy peligrosa para la medicina", "La IA solo sirve para organizar archivos"],
         correct: 1,
         level: "advanced",
         audioType: true
     },
     {
-        question: "Escucha el audio e identifica el tono y propósito del hablante: ¿Cuál es la actitud del hablante hacia la política ambiental propuesta?",
+        question: "Escucha el audio sobre política ambiental. ¿Cómo se siente el hablante sobre las nuevas leyes ambientales?",
         audioSrc: "audio/spanish_environmental_policy.mp3",
-        options: ["Escéptico pero abierto al compromiso", "Fuertemente partidario con reservas", "Completamente opuesto a cualquier cambio", "Neutral y analítico"],
+        options: ["No está seguro pero está dispuesto a escuchar", "Está muy contento con todo", "No le gusta nada de los cambios", "No tiene opinión sobre el tema"],
         correct: 0,
         level: "advanced",
         audioType: true
     },
     {
-        question: "Escucha el audio y responde: ¿Qué recomendación específica hace el hablante con respecto a la planificación urbana?",
+        question: "Escucha el audio sobre planificación de ciudades. ¿Qué sugiere el hablante para mejorar las ciudades?",
         audioSrc: "audio/spanish_urban_planning.mp3",
-        options: ["Aumentar espacios de estacionamiento en centros urbanos", "Implementar más espacios verdes y zonas peatonales", "Construir rascacielos más altos para acomodar el crecimiento poblacional", "Reducir el financiamiento del transporte público"],
+        options: ["Hacer más lugares para estacionar autos", "Crear más parques y lugares para caminar", "Construir edificios más altos", "Gastar menos dinero en transporte público"],
         correct: 1,
         level: "advanced",
         audioType: true
     },
     {
-        question: "Escucha el audio y determina: ¿Cuál es la suposición subyacente en el argumento del hablante sobre la reforma educativa?",
+        question: "Escucha el audio sobre educación. ¿Qué piensa el hablante que es más importante para que los estudiantes aprendan bien?",
         audioSrc: "audio/spanish_education_reform.mp3",
-        options: ["Los métodos de enseñanza tradicionales son completamente inefectivos", "La tecnología por sí sola puede resolver los desafíos educativos", "El compromiso del estudiante es el indicador principal del éxito del aprendizaje", "Las pruebas estandarizadas miden con precisión el logro del estudiante"],
+        options: ["Los métodos antiguos de enseñanza no funcionan", "La tecnología sola puede arreglar todo", "Que los estudiantes estén interesados en aprender", "Los exámenes muestran exactamente qué tan bien aprenden"],
         correct: 2,
         level: "advanced",
         audioType: true
