@@ -1,67 +1,67 @@
-// MERN Stack Exam Questions
+// MERN Stack Exam Questions - B2-C1 Level
 const mernQuestions = [
-    // Basic Questions (3) - Enhanced technical complexity
+    // Basic Questions (3) - B2 Level - More Technically Complex
     {
-        question: "What is the output of this code?\n\n<pre><code>const arr = [1, 2, 3];\nconst newArr = arr.map(x => x * 2);\narr.push(4);\nconsole.log(newArr);</code></pre>",
-        options: ["[1, 2, 3, 4]", "[2, 4, 6]", "[2, 4, 6, 8]", "[1, 2, 3]"],
-        correct: 1,
-        level: "basic"
-    },
-    {
-        question: "Consider this code:\n\n<pre><code>let x = 5;\nconst y = x++;\nconsole.log(`x: ${x}, y: ${y}`);</code></pre>\n\nWhat is the output?",
-        options: ["x: 5, y: 5", "x: 6, y: 5", "x: 5, y: 6", "x: 6, y: 6"],
-        correct: 1,
-        level: "basic"
-    },
-    {
-        question: "What happens when you run this code?\n\n<pre><code>try {\n    const obj = null;\n    console.log(obj.property);\n} catch (error) {\n    console.log(error.name);\n}</code></pre>",
-        options: ["TypeError", "ReferenceError", "Error", "No error"],
+        question: "You're building a user authentication system for an e-commerce app. Users report that sometimes they get logged out unexpectedly, and the login state doesn't persist when they refresh the page. Here's the current implementation:\n\n<pre><code>// Frontend - Login component\nconst Login = () => {\n  const [user, setUser] = useState(null);\n  \n  const handleLogin = async (credentials) => {\n    try {\n      const response = await fetch('/api/login', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        body: JSON.stringify(credentials)\n      });\n      const data = await response.json();\n      setUser(data.user);\n    } catch (error) {\n      console.error('Login failed:', error);\n    }\n  };\n  \n  return (\n    &lt;div&gt;\n      {user ? &lt;Dashboard user={user} /&gt; : &lt;LoginForm onSubmit={handleLogin} /&gt;}\n    &lt;/div&gt;\n  );\n};</code></pre>\n\nWhat's causing the authentication issues?",
+        options: ["No token storage or persistence mechanism", "Missing error handling for failed requests", "Insecure API endpoint", "No issues - implementation is correct"],
         correct: 0,
         level: "basic"
     },
-    
-    // Middle Questions (3) - Enhanced complexity
     {
-        question: "Consider this MongoDB aggregation pipeline:\n\n<pre><code>const result = await Order.aggregate([\n  { $match: { status: 'completed' } },\n  { $group: { \n    _id: '$customerId', \n    totalSpent: { $sum: '$amount' },\n    orderCount: { $sum: 1 }\n  }},\n  { $sort: { totalSpent: -1 } },\n  { $limit: 10 }\n]);</code></pre>\n\nWhat does this pipeline accomplish?",
-        options: ["Finds all completed orders", "Groups orders by customer and calculates totals", "Sorts orders by amount", "Counts total orders"],
-        correct: 1,
-        level: "middle"
+        question: "You're building a product catalog for an online store. The product list loads slowly and users complain about poor performance when browsing through hundreds of products. Here's the current implementation:\n\n<pre><code>// Frontend - Product list component\nconst ProductList = () => {\n  const [products, setProducts] = useState([]);\n  \n  useEffect(() => {\n    fetch('/api/products')\n      .then(res => res.json())\n      .then(data => setProducts(data));\n  }, []);\n  \n  return (\n    &lt;div&gt;\n      {products.map(product => (\n        &lt;ProductCard key={product.id} product={product} /&gt;\n      ))}\n    &lt;/div&gt;\n  );\n};</code></pre>\n\nWhat's causing the performance issues?",
+        options: ["Loading all products at once without pagination", "Missing loading states and error handling", "No caching mechanism", "All of the above"],
+        correct: 3,
+        level: "basic"
     },
     {
-        question: "In this Express.js middleware:\n```javascript\napp.use('/api', (req, res, next) => {\n  req.startTime = Date.now();\n  res.on('finish', () => {\n    const duration = Date.now() - req.startTime;\n    console.log(`${req.method} ${req.path} - ${duration}ms`);\n  });\n  next();\n});\n```\nWhat does this middleware do?",
-        options: ["Logs all API requests", "Measures response time for API endpoints", "Blocks slow requests", "Caches API responses"],
-        correct: 1,
-        level: "middle"
-    },
-    {
-        question: "Given this React component:\n```javascript\nconst UserList = ({ users }) => {\n  const [filteredUsers, setFilteredUsers] = useState(users);\n  \n  useEffect(() => {\n    setFilteredUsers(users);\n  }, [users]);\n  \n  return (\n    <div>\n      {filteredUsers.map(user => (\n        <UserCard key={user.id} user={user} />\n      ))}\n    </div>\n  );\n};\n```\nWhat issue exists with this component?",
-        options: ["No issue exists", "Missing dependency in useEffect", "Unnecessary state variable", "Inefficient re-rendering"],
-        correct: 2,
-        level: "middle"
+        question: "You're building a real-time chat feature for a social media app. Users report that messages sometimes appear out of order or get duplicated. Here's the current implementation:\n\n<pre><code>// Frontend - Chat component\nconst Chat = ({ roomId }) => {\n  const [messages, setMessages] = useState([]);\n  \n  useEffect(() => {\n    const socket = io('/chat');\n    \n    socket.on('newMessage', (message) => {\n      setMessages(prev => [...prev, message]);\n    });\n    \n    return () => socket.disconnect();\n  }, [roomId]);\n  \n  return (\n    &lt;div&gt;\n      {messages.map(msg => (\n        &lt;Message key={msg.id} message={msg} /&gt;\n      ))}\n    &lt;/div&gt;\n  );\n};</code></pre>\n\nWhat's causing the message ordering and duplication issues?",
+        options: ["Race condition - messages arrive out of order", "Missing message deduplication logic", "No proper message sorting", "All of the above"],
+        correct: 3,
+        level: "basic"
     },
     
-    // Advanced Questions (4) - Enhanced complexity
+    // Middle Questions (3) - B2+ Level - More Complex
     {
-        question: "Consider this Node.js cluster setup:\n```javascript\nconst cluster = require('cluster');\nconst numCPUs = require('os').cpus().length;\n\nif (cluster.isMaster) {\n  for (let i = 0; i < numCPUs; i++) {\n    cluster.fork();\n  }\n  \n  cluster.on('exit', (worker, code, signal) => {\n    console.log(`Worker ${worker.process.pid} died`);\n    cluster.fork();\n  });\n} else {\n  require('./server.js');\n}\n```\nWhat happens when a worker process crashes?",
-        options: ["The application stops", "A new worker is automatically created", "The master process crashes", "The remaining workers handle the load"],
-        correct: 1,
-        level: "advanced"
+        question: "You're building a shopping cart system for an e-commerce platform. Users report that when they add items to their cart, the total price sometimes shows incorrect amounts, and items occasionally disappear. Here's the current implementation:\n\n<pre><code>// Backend - Cart API\napp.post('/api/cart/add', async (req, res) => {\n  try {\n    const { userId, productId, quantity } = req.body;\n    \n    const cart = await Cart.findOne({ userId });\n    if (!cart) {\n      await Cart.create({ userId, items: [] });\n    }\n    \n    const product = await Product.findById(productId);\n    cart.items.push({ productId, quantity, price: product.price });\n    \n    await cart.save();\n    res.json({ success: true, cart });\n  } catch (error) {\n    res.status(500).json({ error: error.message });\n  }\n});</code></pre>\n\nWhat's causing the cart synchronization issues?",
+        options: ["Race condition in concurrent cart updates", "Missing validation for product existence", "No atomic operations for cart modifications", "All of the above"],
+        correct: 3,
+        level: "middle"
     },
     {
-        question: "In this MongoDB transaction:\n```javascript\nconst session = await mongoose.startSession();\nsession.startTransaction();\ntry {\n  await Account.updateOne(\n    { _id: fromAccountId },\n    { $inc: { balance: -amount } },\n    { session }\n  );\n  await Account.updateOne(\n    { _id: toAccountId },\n    { $inc: { balance: amount } },\n    { session }\n  );\n  await session.commitTransaction();\n} catch (error) {\n  await session.abortTransaction();\n  throw error;\n} finally {\n  session.endSession();\n}\n```\nWhat is the purpose of the session parameter?",
-        options: ["To track user sessions", "To ensure atomic operations", "To improve performance", "To enable caching"],
-        correct: 1,
-        level: "advanced"
+        question: "You're building a user dashboard that displays analytics data. The dashboard loads slowly and sometimes shows stale data. Here's the current implementation:\n\n<pre><code>// Frontend - Dashboard component\nconst Dashboard = () => {\n  const [analytics, setAnalytics] = useState(null);\n  const [loading, setLoading] = useState(true);\n  \n  useEffect(() => {\n    const fetchAnalytics = async () => {\n      setLoading(true);\n      try {\n        const response = await fetch('/api/analytics');\n        const data = await response.json();\n        setAnalytics(data);\n      } catch (error) {\n        console.error('Failed to fetch analytics:', error);\n      } finally {\n        setLoading(false);\n      }\n    };\n    \n    fetchAnalytics();\n    \n    // Refresh every 30 seconds\n    const interval = setInterval(fetchAnalytics, 30000);\n    return () => clearInterval(interval);\n  }, []);\n  \n  if (loading) return &lt;Spinner /&gt;;\n  return &lt;AnalyticsView data={analytics} /&gt;;\n};</code></pre>\n\nWhat's causing the performance and data freshness issues?",
+        options: ["No caching strategy for expensive analytics queries", "Frequent API calls without optimization", "Missing error handling for failed requests", "All of the above"],
+        correct: 3,
+        level: "middle"
     },
     {
-        question: "Given this React performance optimization:\n```javascript\nconst ExpensiveComponent = React.memo(({ data, onUpdate }) => {\n  const processedData = useMemo(() => {\n    return data.map(item => ({\n      ...item,\n      processed: heavyComputation(item)\n    }));\n  }, [data]);\n  \n  return (\n    <div>\n      {processedData.map(item => (\n        <DataItem key={item.id} item={item} onUpdate={onUpdate} />\n      ))}\n    </div>\n  );\n});\n```\nWhat is the purpose of React.memo here?",
-        options: ["To prevent unnecessary re-renders", "To optimize memory usage", "To enable lazy loading", "To improve bundle size"],
+        question: "You're building a file upload system for a document management app. Users report that large files fail to upload and sometimes the upload progress gets stuck. Here's the current implementation:\n\n<pre><code>// Frontend - File upload component\nconst FileUpload = () => {\n  const [uploading, setUploading] = useState(false);\n  const [progress, setProgress] = useState(0);\n  \n  const handleUpload = async (file) => {\n    setUploading(true);\n    setProgress(0);\n    \n    const formData = new FormData();\n    formData.append('file', file);\n    \n    try {\n      const response = await fetch('/api/upload', {\n        method: 'POST',\n        body: formData\n      });\n      \n      if (response.ok) {\n        setProgress(100);\n        console.log('Upload successful');\n      }\n    } catch (error) {\n      console.error('Upload failed:', error);\n    } finally {\n      setUploading(false);\n    }\n  };\n  \n  return (\n    &lt;div&gt;\n      &lt;input type=\"file\" onChange={(e) => handleUpload(e.target.files[0])} /&gt;\n      {uploading && &lt;ProgressBar progress={progress} /&gt;}\n    &lt;/div&gt;\n  );\n};</code></pre>\n\nWhat's causing the upload issues?",
+        options: ["No chunked upload for large files", "Missing progress tracking implementation", "No timeout handling for long uploads", "All of the above"],
+        correct: 3,
+        level: "middle"
+    },
+    
+    // Advanced Questions (4) - C1 Level - High Complexity
+    {
+        question: "You're building a complex microservices architecture for a banking application. The system needs to handle transactions, user authentication, and real-time notifications. You're experiencing data consistency issues and performance problems. Here's the current implementation:\n\n<pre><code>// Transaction Service\nclass TransactionService {\n  async transferMoney(fromAccount, toAccount, amount) {\n    try {\n      // Deduct from source account\n      await AccountService.updateBalance(fromAccount, -amount);\n      \n      // Add to destination account\n      await AccountService.updateBalance(toAccount, amount);\n      \n      // Create transaction record\n      const transaction = await Transaction.create({\n        fromAccount,\n        toAccount,\n        amount,\n        status: 'completed'\n      });\n      \n      // Send notification\n      await NotificationService.sendTransferNotification(transaction);\n      \n      return transaction;\n    } catch (error) {\n      // Rollback logic missing\n      throw error;\n    }\n  }\n}</code></pre>\n\nWhat advanced MERN patterns and potential issues are demonstrated here?",
+        options: ["Missing distributed transaction management, potential data inconsistency", "Proper service separation with clear responsibilities", "Efficient microservices communication", "No issues - sophisticated implementation"],
         correct: 0,
         level: "advanced"
     },
     {
-        question: "Consider this Express.js error handling:\n```javascript\napp.use((err, req, res, next) => {\n  if (err.name === 'ValidationError') {\n    return res.status(400).json({\n      error: 'Validation failed',\n      details: err.details\n    });\n  }\n  \n  if (err.name === 'CastError') {\n    return res.status(400).json({\n      error: 'Invalid ID format'\n    });\n  }\n  \n  console.error(err);\n  res.status(500).json({ error: 'Internal server error' });\n});\n```\nWhat is the purpose of the next parameter?",
-        options: ["To pass control to the next middleware", "To handle async errors", "To enable error chaining", "To log error details"],
+        question: "You're building a sophisticated caching system for a high-traffic e-commerce platform. The system needs to handle product catalog, user sessions, and real-time inventory updates. You're experiencing cache invalidation issues and memory leaks. Here's the current implementation:\n\n<pre><code>// Cache Service\nclass CacheService {\n  constructor() {\n    this.cache = new Map();\n    this.ttl = new Map();\n  }\n  \n  set(key, value, ttlSeconds = 3600) {\n    this.cache.set(key, value);\n    this.ttl.set(key, Date.now() + (ttlSeconds * 1000));\n  }\n  \n  get(key) {\n    if (this.ttl.get(key) &lt; Date.now()) {\n      this.cache.delete(key);\n      this.ttl.delete(key);\n      return null;\n    }\n    return this.cache.get(key);\n  }\n  \n  invalidate(pattern) {\n    for (const key of this.cache.keys()) {\n      if (key.includes(pattern)) {\n        this.cache.delete(key);\n        this.ttl.delete(key);\n      }\n    }\n  }\n}</code></pre>\n\nWhat performance and memory management issues exist in this implementation?",
+        options: ["Memory leaks from uncleaned TTL entries, inefficient pattern matching", "Proper TTL implementation with automatic cleanup", "Efficient cache invalidation strategy", "No issues - optimal caching implementation"],
+        correct: 0,
+        level: "advanced"
+    },
+    {
+        question: "You're building a complex real-time collaboration system for a document editing app. Multiple users need to edit documents simultaneously with conflict resolution. You're experiencing data conflicts and performance issues. Here's the current implementation:\n\n<pre><code>// Real-time Collaboration Service\nclass CollaborationService {\n  constructor() {\n    this.activeSessions = new Map();\n    this.documentVersions = new Map();\n  }\n  \n  joinDocument(userId, documentId) {\n    const session = {\n      userId,\n      documentId,\n      lastSeen: Date.now(),\n      cursor: { line: 0, column: 0 }\n    };\n    \n    this.activeSessions.set(userId, session);\n    \n    // Send current document state\n    const document = this.documentVersions.get(documentId);\n    return document || this.loadDocument(documentId);\n  }\n  \n  handleEdit(userId, documentId, edit) {\n    const document = this.documentVersions.get(documentId);\n    if (!document) return;\n    \n    // Apply edit directly\n    document.content = this.applyEdit(document.content, edit);\n    document.version++;\n    \n    // Broadcast to all users\n    this.broadcastEdit(documentId, edit, userId);\n  }\n  \n  broadcastEdit(documentId, edit, excludeUserId) {\n    // Broadcast logic\n  }\n}</code></pre>\n\nWhat sophisticated MERN patterns and potential issues are demonstrated here?",
+        options: ["Missing conflict resolution, potential data corruption in concurrent edits", "Proper real-time collaboration with version control", "Efficient broadcasting mechanism", "No issues - optimal collaboration implementation"],
+        correct: 0,
+        level: "advanced"
+    },
+    {
+        question: "You're building a sophisticated search and recommendation engine for a content platform. The system needs to handle complex queries, user behavior tracking, and personalized recommendations. You're experiencing slow query performance and inaccurate recommendations. Here's the current implementation:\n\n<pre><code>// Search and Recommendation Service\nclass SearchService {\n  async searchContent(query, userId) {\n    try {\n      // Get user preferences\n      const userPrefs = await UserPreferences.findById(userId);\n      \n      // Search content\n      const results = await Content.find({\n        $text: { $search: query },\n        category: { $in: userPrefs.preferredCategories }\n      }).sort({ score: { $meta: 'textScore' } });\n      \n      // Get user's viewing history\n      const history = await ViewHistory.find({ userId })\n        .sort({ timestamp: -1 })\n        .limit(100);\n      \n      // Calculate personalized scores\n      const personalizedResults = results.map(content => ({\n        ...content,\n        personalizedScore: this.calculatePersonalizedScore(content, history)\n      }));\n      \n      return personalizedResults.sort((a, b) => \n        b.personalizedScore - a.personalizedScore\n      );\n    } catch (error) {\n      throw error;\n    }\n  }\n  \n  calculatePersonalizedScore(content, history) {\n    // Complex scoring algorithm\n  }\n}</code></pre>\n\nWhat performance and scalability issues exist in this implementation?",
+        options: ["Inefficient database queries, missing caching, no pagination", "Proper personalization with user preferences", "Efficient search with text indexing", "No issues - optimal search implementation"],
         correct: 0,
         level: "advanced"
     }
