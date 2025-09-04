@@ -69,7 +69,7 @@ const flutterQuestions = [
 
 let currentAnswers = new Array(flutterQuestions.length).fill(-1);
 let examStarted = false;
-let timeLeft = 400; // 400 seconds for Flutter exam
+let timeLeft = 600; // 600 seconds for Flutter exam
 let timerInterval;
 
 document.addEventListener('DOMContentLoaded', function() {
