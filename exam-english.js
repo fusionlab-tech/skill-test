@@ -1,42 +1,42 @@
 // English Language Exam Questions - B2-C1 Level
 const englishQuestions = [
-    // Basic Questions (3) - B2 Level
+    // Basic Questions (3) - B2 Level - More Practical and Real-World
     {
-        question: "Consider this sentence:\n\"The research findings, which were published last month, have been met with considerable skepticism from the academic community.\"\nWhat type of clause is \"which were published last month\"?",
-        options: ["Restrictive relative clause", "Non-restrictive relative clause", "Adverbial clause", "Noun clause"],
+        question: "You're writing a professional email to a client about a project delay. Which sentence best maintains a professional tone while being honest about the situation?\n\n<pre><code>\"I'm really sorry, but we messed up the timeline and won't be able to deliver on time.\"\n\n\"Due to unforeseen technical challenges, we need to extend the project deadline by two weeks.\"\n\n\"The project is delayed because our team didn't work hard enough.\"\n\n\"We can't finish the project on time, but it's not our fault.\"</code></pre>",
+        options: ["First option - direct and honest", "Second option - professional and explanatory", "Third option - takes responsibility", "Fourth option - avoids blame"],
         correct: 1,
         level: "basic"
     },
     {
-        question: "In the sentence:\n\"Not only did the company exceed its quarterly targets, but it also managed to reduce operational costs by 15%.\"\nWhat grammatical structure is being used?",
-        options: ["Inversion with negative adverbial", "Passive voice construction", "Subjunctive mood", "Gerund phrase"],
+        question: "You're presenting quarterly results to senior management. Which opening statement best establishes credibility and sets the right tone?\n\n<pre><code>\"So, I guess we did okay this quarter...\"\n\n\"I'm going to talk about our quarterly performance now.\"\n\n\"Our Q3 results demonstrate strong growth across all key metrics.\"\n\n\"Well, here are the numbers, but I'm not sure what they mean.\"</code></pre>",
+        options: ["First option - modest and humble", "Second option - clear and direct", "Third option - confident and data-driven", "Fourth option - honest about uncertainty"],
+        correct: 2,
+        level: "basic"
+    },
+    {
+        question: "You're responding to a customer complaint about a product defect. Which response best balances empathy with professionalism?\n\n<pre><code>\"We're really sorry about this issue. We understand how frustrating this must be for you, and we're committed to resolving it quickly. Please contact our support team at your earliest convenience.\"\n\n\"This is a known issue that affects some customers. We're working on a fix.\"\n\n\"I'm sorry you're having problems. Can you try turning it off and on again?\"\n\n\"We apologize for any inconvenience. Please return the product for a full refund.\"</code></pre>",
+        options: ["First option - empathetic and solution-focused", "Second option - technical and informative", "Third option - casual and helpful", "Fourth option - direct and refund-focused"],
         correct: 0,
         level: "basic"
     },
-    {
-        question: "Given this text:\n\"The burgeoning field of artificial intelligence has precipitated unprecedented ethical quandaries that challenge our fundamental understanding of human consciousness and autonomy.\"\nWhat does 'burgeoning' mean in this context?",
-        options: ["Declining rapidly", "Growing and developing", "Controversial and disputed", "Technologically advanced"],
-        correct: 1,
-        level: "basic"
-    },
     
-    // Middle Questions (3) - B2+ Level
+    // Middle Questions (3) - B2+ Level - More Complex Real-World Scenarios
     {
-        question: "Analyze this complex sentence:\n\"Had the government implemented the proposed environmental regulations earlier, the current ecological crisis might have been averted, though the economic implications would have been substantial.\"\nWhat conditional structure is used here?",
-        options: ["Third conditional with mixed time reference", "Second conditional with past perfect", "Mixed conditional (past perfect + would have)", "Inverted conditional with modal"],
-        correct: 2,
+        question: "You're negotiating a contract with a potential business partner. The other party has proposed terms that are unfavorable to your company. Which approach best maintains the relationship while protecting your interests?\n\n<pre><code>\"These terms are completely unacceptable. We need to start over.\"\n\n\"I appreciate your proposal. While we see value in this partnership, we have some concerns about the current terms that we'd like to discuss.\"\n\n\"We can't accept these terms, but maybe we can work something out.\"\n\n\"Let me think about it and get back to you.\"</code></pre>",
+        options: ["First option - direct and firm", "Second option - diplomatic and collaborative", "Third option - vague but open", "Fourth option - non-committal"],
+        correct: 1,
         level: "middle"
     },
     {
-        question: "Consider this academic passage:\n\"The phenomenon of cognitive dissonance, whereby individuals experience psychological discomfort when their beliefs conflict with their actions, has profound implications for behavioral change interventions.\"\nWhat rhetorical device is 'whereby' functioning as?",
-        options: ["A relative pronoun", "A conjunctive adverb", "A subordinating conjunction", "A discourse marker"],
-        correct: 2,
+        question: "You're leading a team meeting where you need to address declining performance. Which approach best motivates improvement while maintaining team morale?\n\n<pre><code>\"Our performance has been terrible lately, and we need to do better.\"\n\n\"I've noticed some challenges in our recent performance. Let's work together to identify solutions and get back on track.\"\n\n\"Everyone needs to work harder, or there will be consequences.\"\n\n\"I'm disappointed in the team's recent results. We need to improve immediately.\"</code></pre>",
+        options: ["First option - direct and honest", "Second option - collaborative and solution-focused", "Third option - threatening and demanding", "Fourth option - disappointed but firm"],
+        correct: 1,
         level: "middle"
     },
     {
-        question: "In this sentence:\n\"The company's decision to diversify its portfolio, while simultaneously maintaining its core competencies, exemplifies strategic foresight in an increasingly volatile market.\"\nWhat is the function of the infinitive 'to diversify'?",
-        options: ["Subject of the sentence", "Object of the preposition", "Modifier of the noun 'decision'", "Complement of the verb 'exemplifies'"],
-        correct: 2,
+        question: "You're writing a proposal for a new project that requires significant investment. Which opening best captures attention and establishes the value proposition?\n\n<pre><code>\"We need to invest in this project because it's important.\"\n\n\"This proposal outlines a strategic initiative that could increase revenue by 25% while reducing operational costs.\"\n\n\"I think we should do this project. It seems like a good idea.\"\n\n\"The following document describes a project that we should consider implementing.\"</code></pre>",
+        options: ["First option - simple and direct", "Second option - data-driven and compelling", "Third option - casual and opinion-based", "Fourth option - formal and neutral"],
+        correct: 1,
         level: "middle"
     },
     
