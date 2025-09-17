@@ -177,7 +177,11 @@ const pythonQuestions = [
     }
 ];
 
-let currentAnswers = new Array(pythonQuestions.length).fill(-1);
+// Limit the Python exam to a fixed subset of questions
+const MAX_PYTHON_QUESTIONS = 10;
+const selectedPythonQuestions = pythonQuestions.slice(0, MAX_PYTHON_QUESTIONS);
+
+let currentAnswers = new Array(selectedPythonQuestions.length).fill(-1);
 let examStarted = false;
 let timeLeft = 600; // 600 seconds (10 minutes) for Python exam with live coding questions
 let timerInterval;
@@ -230,7 +234,7 @@ function renderQuestions() {
     const questionsContainer = document.getElementById('questions');
     questionsContainer.innerHTML = '';
     
-    pythonQuestions.forEach((q, index) => {
+    selectedPythonQuestions.forEach((q, index) => {
         const questionDiv = document.createElement('div');
         questionDiv.className = 'question';
         
@@ -275,12 +279,12 @@ function submitExam() {
     clearInterval(timerInterval);
     
     const score = calculateScore();
-    const percentage = Math.round((score / pythonQuestions.length) * 100);
+    const percentage = Math.round((score / selectedPythonQuestions.length) * 100);
     
     document.getElementById('examContent').style.display = 'none';
     document.getElementById('results').style.display = 'block';
     document.getElementById('scoreDisplay').textContent = `${percentage}%`;
-    document.getElementById('resultMessage').textContent = `You scored ${score} out of ${pythonQuestions.length} questions correctly.`;
+    document.getElementById('resultMessage').textContent = `You scored ${score} out of ${selectedPythonQuestions.length} questions correctly.`;
     
     // Send results via email
     sendResults(score, percentage);
@@ -289,7 +293,7 @@ function submitExam() {
 function calculateScore() {
     let score = 0;
     currentAnswers.forEach((answer, index) => {
-        if (answer === pythonQuestions[index].correct) {
+        if (answer === selectedPythonQuestions[index].correct) {
             score++;
         }
     });
@@ -302,10 +306,10 @@ function sendResults(score, percentage) {
     // Prepare exam results
     const examResults = {
         score: score,
-        totalQuestions: pythonQuestions.length,
+        totalQuestions: selectedPythonQuestions.length,
         percentage: percentage
     };
     
     // Use the centralized email utility
-    handleEmailSending(candidateInfo, examResults, pythonQuestions, currentAnswers, timeLeft);
+    handleEmailSending(candidateInfo, examResults, selectedPythonQuestions, currentAnswers, timeLeft);
 }
